@@ -55,6 +55,7 @@ class SlideDirective(Directive):
     def run(self):
         """Build slide node."""
         self.assert_has_content()
+
         set_classes(self.options)
 
         text = "\n".join(self.content)
@@ -69,12 +70,6 @@ class SlideDirective(Directive):
 
         node["noheading"] = "noheading" in self.options
 
-        options_list = [
-            o for o in SlideDirective.option_spec if o not in {"class", "noheading", "subtitle"}
-        ]
-        for option in options_list:
-            if option in self.options:
-                node[option] = self.options.get(option)
         return [node]
 
 
@@ -93,6 +88,7 @@ class SpeakerNotesDirective(Directive):
     def run(self):
         """Build speaker notes node."""
         self.assert_has_content()
+
         set_classes(self.options)
 
         text = "\n".join(self.content)
@@ -100,6 +96,7 @@ class SpeakerNotesDirective(Directive):
         self.add_name(node)
 
         self.state.nested_parse(self.content, self.content_offset, node)
+
         return [node]
 
 
