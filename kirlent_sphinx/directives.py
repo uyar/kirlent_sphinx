@@ -129,34 +129,20 @@ def visit_slide(self, node):
     subtitle_heading = node.get("subtitle-heading", "h3")
 
     md_slide = node.get("data-markdown")
-
     if md_slide is not None:
-        title_base = "%(heading)s %(title)s \n"
-        title_text = None
-        if title:
-            title_text = title_base % {
-                "heading": _MARKDOWN_HEADINGS.get(title_heading),
-                "title": title,
-            }
-
-        subtitle_text = None
-        if subtitle:
-            subtitle_text = title_base % {
-                "heading": _MARKDOWN_HEADINGS.get(subtitle_heading),
-                "title": subtitle,
-            }
+        template = "%(mark)s %(text)s \n"
+        title_mark = _MARKDOWN_HEADINGS.get(title_heading)
+        subtitle_mark = _MARKDOWN_HEADINGS.get(subtitle_heading)
     else:
-        title_base = "<%(heading)s>%(title)s</%(heading)s>\n"
-        title_text = None
-        if title:
-            title_text = title_base % {"title": title, "heading": title_heading}
+        template = "<%(mark)s>%(text)s</%(mark)s>\n"
+        title_mark = title_heading
+        subtitle_mark = subtitle_heading
 
-        subtitle_text = None
-        if subtitle:
-            subtitle_text = title_base % {"title": subtitle, "heading": subtitle_heading}
+    title_text = (template % {"mark": title_mark, "text": title}) if title else None
+    subtitle_text = (template % {"mark": subtitle_mark, "text": subtitle}) if subtitle else None
 
     self.body.append(self.starttag(node, "section", **section_attrs))
-    self.body.append('<div class="content">\n')
+    self.body.append('<div class="content">\n')  # for Bulma
 
     if md_slide is not None:
         if md_slide == "":
@@ -177,7 +163,7 @@ def visit_slide(self, node):
 
 def depart_slide(self, node=None):
     """Build end tag for a slide."""
-    self.body.append("</div>\n")
+    self.body.append("</div>\n")  # for closing the Bulma content div
     self.body.append("</section>\n")
 
 
