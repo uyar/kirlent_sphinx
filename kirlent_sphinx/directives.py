@@ -129,6 +129,7 @@ def visit_slide(self, node):
         title = node.get("title")
 
     title_heading = node.get("title-heading", "h2")
+
     subtitle = node.get("subtitle")
     subtitle_heading = node.get("subtitle-heading", "h3")
 
@@ -157,8 +158,9 @@ def visit_slide(self, node):
         if subtitle:
             subtitle_text = title_base % {"title": subtitle, "heading": subtitle_heading}
 
+    self.body.append(self.starttag(node, "section", **section_attrs))
+    self.body.append('<div class="content">\n')
     if node.get("data-markdown") is not None:
-        self.body.append(self.starttag(node, "section", **section_attrs))
         if node.get("data-markdown") == "":
             self.body.append("<script type='text/template'>\n")
             if title_text:
@@ -168,8 +170,6 @@ def visit_slide(self, node):
             self.body.append(node.rawsource)
             self.body.append("</script>\n")
     else:
-        self.body.append(self.starttag(node, "section", **section_attrs))
-        self.body.append('<div class="content">\n')
         if title_text:
             self.body.append(title_text)
         if subtitle_text:
@@ -200,6 +200,7 @@ def setup(app):
     :sig: (sphinx.application.Sphinx) -> None
     """
     logger.info("Initializing Kirlent directives")
+
     app.add_node(Slide, html=(visit_slide, depart_slide))
     app.add_node(SpeakerNotes, html=(visit_speaker_note, depart_speaker_note))
     app.add_directive("slide", SlideDirective)
