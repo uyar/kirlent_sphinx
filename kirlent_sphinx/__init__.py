@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from . import slides
+from . import slides, tables
 
 
 __version__ = "0.1.0"
@@ -26,3 +26,4 @@ def setup(app):
     """
     slides.setup(app)
     app.add_html_theme("kirlent", str(Path(_template_path, "kirlent")))
+    tables.setup(app)
