@@ -33,7 +33,7 @@ class SlideDirective(Directive):
         "class": directives.class_option,
         "noheading": directives.flag,
         "title-heading": lambda t: directives.choice(t, ("h1", "h2", "h3", "h4", "h5", "h6")),
-        "subtitle": directives.unchanged,
+        "subtitle": directives.unchanged_required,
         "subtitle-heading": directives.unchanged,
         "data-autoslide": directives.unchanged,
         "data-transition": directives.unchanged,
@@ -122,9 +122,7 @@ def visit_slide(self, node):
         if node.get(attr) is not None:
             section_attrs.update({attr: node.get(attr)})
 
-    title = None
-    if node.get("title") and (not node.get("noheading")):
-        title = node.get("title")
+    title = node.get("title") if (not node.get("noheading")) else None
     title_heading = node.get("title-heading", "h2")
 
     subtitle = node.get("subtitle")
