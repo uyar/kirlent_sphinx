@@ -21,7 +21,7 @@ class SpeakerNotes(nodes.General, nodes.Element):
 
 
 class SlideDirective(Directive):
-    """Directive for a slide."""
+    """A directive for generating a slide."""
 
     has_content = True
     required_arguments = 0
@@ -53,7 +53,7 @@ class SlideDirective(Directive):
     node_class = Slide
 
     def run(self):
-        """Build slide node."""
+        """Build a slide node from this directive."""
         self.assert_has_content()
 
         set_classes(self.options)
@@ -74,7 +74,7 @@ class SlideDirective(Directive):
 
 
 class SpeakerNotesDirective(Directive):
-    """Directive for a speaker notes entry."""
+    """A directive for generating speaker notes."""
 
     has_content = True
     required_arguments = 0
@@ -86,7 +86,7 @@ class SpeakerNotesDirective(Directive):
     node_class = SpeakerNotes
 
     def run(self):
-        """Build speaker notes node."""
+        """Build a speaker notes node from this directive."""
         self.assert_has_content()
 
         set_classes(self.options)
@@ -111,7 +111,7 @@ _MARKDOWN_HEADINGS = {
 
 
 def visit_slide(self, node):
-    """Build start tag for a slide."""
+    """Build start tag for a slide node."""
     section_attrs = {}
 
     if node.get("id"):
@@ -162,26 +162,27 @@ def visit_slide(self, node):
 
 
 def depart_slide(self, node=None):
-    """Build end tag for a slide."""
+    """Build end tag for a slide node."""
     self.body.append("</div>\n")  # for closing the Bulma content div
     self.body.append("</section>\n")
 
 
 def visit_speaker_note(self, node):
-    """Build start tag for a speaker note."""
+    """Build start tag for a speaker notes node."""
     self.body.append(self.starttag(node, "aside", **{"class": "notes"}))
     self.set_first_last(node)
 
 
 def depart_speaker_note(self, node=None):
-    """Build end tag for a speaker note."""
+    """Build end tag for a speaker notes node."""
     self.body.append("</aside>\n")
 
 
 def setup(app):
-    """Initialize the extension.
+    """Add the directives to a Sphinx application.
 
     :sig: (sphinx.application.Sphinx) -> None
+    :param app: Application to add the directives to.
     """
     logger.info("Initializing Kirlent directives")
     app.add_node(Slide, html=(visit_slide, depart_slide))
