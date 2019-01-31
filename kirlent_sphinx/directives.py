@@ -110,7 +110,7 @@ class SpeakerNoteDirective(Directive):
 
 def visit_slide(self, node):
     """Build start tag for a slide."""
-    section_attr = {}
+    section_attrs = {}
 
     markdown_headings = {
         "h1": "#",
@@ -122,15 +122,15 @@ def visit_slide(self, node):
     }
 
     if node.get("id"):
-        section_attr.update({"ids": [node.get("id")]})
+        section_attrs.update({"ids": [node.get("id")]})
 
     data_attrs = [a for a in SlideDirective.option_spec if a.startswith("data-")]
     for attr in data_attrs:
         if node.get(attr) is not None:
-            section_attr.update({attr: node.get(attr)})
+            section_attrs.update({attr: node.get(attr)})
 
     title = None
-    if node.get("title") and not node.get("noheading"):
+    if node.get("title") and (not node.get("noheading")):
         title = node.get("title")
 
     title_heading = node.get("title-heading", "h2")
@@ -141,27 +141,29 @@ def visit_slide(self, node):
         title_base = "%(heading)s %(title)s \n"
         title_text = None
         if title:
-            title_text = title_base % dict(
-                heading=markdown_headings.get(title_heading), title=title
-            )
+            title_text = title_base % {
+                "heading": markdown_headings.get(title_heading),
+                "title": title,
+            }
 
         subtitle_text = None
         if subtitle:
-            subtitle_text = title_base % dict(
-                heading=markdown_headings.get(subtitle_heading), title=subtitle
-            )
+            subtitle_text = title_base % {
+                "heading": markdown_headings.get(subtitle_heading),
+                "title": subtitle,
+            }
     else:
         title_base = "<%(heading)s>%(title)s</%(heading)s>\n"
         title_text = None
         if title:
-            title_text = title_base % dict(title=title, heading=title_heading)
+            title_text = title_base % {"title": title, "heading": title_heading}
 
         subtitle_text = None
         if subtitle:
-            subtitle_text = title_base % dict(title=subtitle, heading=subtitle_heading)
+            subtitle_text = title_base % {"title": subtitle, "heading": subtitle_heading}
 
     if node.get("data-markdown") is not None:
-        self.body.append(self.starttag(node, "section", **section_attr))
+        self.body.append(self.starttag(node, "section", **section_attrs))
         if node.get("data-markdown") == "":
             self.body.append("<script type='text/template'>\n")
             if title_text:
@@ -171,7 +173,7 @@ def visit_slide(self, node):
             self.body.append(node.rawsource)
             self.body.append("</script>\n")
     else:
-        self.body.append(self.starttag(node, "section", **section_attr))
+        self.body.append(self.starttag(node, "section", **section_attrs))
         self.body.append('<div class="content">\n')
         if title_text:
             self.body.append(title_text)
