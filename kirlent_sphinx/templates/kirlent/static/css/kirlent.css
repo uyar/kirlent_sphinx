@@ -1,0 +1,25 @@
+.reveal .slides {
+  text-align: left;
+}
+
+.reveal h2 {
+  text-transform: none;
+}
+
+.reveal ul {
+  display: block;
+}
+
+.reveal em {
+  font-style: normal;
+  color: #ff0000;
+}
+
+.highlight {
+  background: none;
+}
+
+code {
+  color: #00b000;
+  background-color: inherit;
+}
