@@ -59,9 +59,8 @@ class SlideDirective(Directive):
 
     def run(self):
         """Build slide node."""
-        set_classes(self.options)
-
         self.assert_has_content()
+        set_classes(self.options)
 
         text = "\n".join(self.content)
         node = self.node_class(text, **self.options)
@@ -76,7 +75,7 @@ class SlideDirective(Directive):
         node["noheading"] = "noheading" in self.options
 
         options_list = [
-            o for o in self.option_spec if o not in {"class", "noheading", "subtitle"}
+            o for o in SlideDirective.option_spec if o not in {"class", "noheading", "subtitle"}
         ]
         for option in options_list:
             if option in self.options:
@@ -98,9 +97,8 @@ class SpeakerNoteDirective(Directive):
 
     def run(self):
         """Build speaker notes node."""
-        set_classes(self.options)
-
         self.assert_has_content()
+        set_classes(self.options)
 
         text = "\n".join(self.content)
         node = self.node_class(text, **self.options)
@@ -113,6 +111,7 @@ class SpeakerNoteDirective(Directive):
 def visit_slide(self, node):
     """Build start tag for a slide."""
     section_attr = {}
+
     markdown_headings = {
         "h1": "#",
         "h2": "##",
@@ -125,22 +124,8 @@ def visit_slide(self, node):
     if node.get("id"):
         section_attr.update({"ids": [node.get("id")]})
 
-    attr_list = (
-        "data-autoslide",
-        "data-transition",
-        "data-transition-speed",
-        "data-background",
-        "data-background-repeat",
-        "data-background-size",
-        "data-background-transition",
-        "data-state",
-        "data-markdown",
-        "data-separator",
-        "data-separator-vertical",
-        "data-separator-notes",
-        "data-charset",
-    )
-    for attr in attr_list:
+    data_attrs = [a for a in SlideDirective.option_spec if a.startswith("data-")]
+    for attr in data_attrs:
         if node.get(attr) is not None:
             section_attr.update({attr: node.get(attr)})
 
