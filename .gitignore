@@ -13,4 +13,6 @@ dist
 .coverage
 .tox
 
+pip-wheel-metadata
+
 .idea
