@@ -61,9 +61,10 @@ class SlideDirective(Directive):
         """Build slide node."""
         set_classes(self.options)
 
+        self.assert_has_content()
+
         text = "\n".join(self.content)
         node = self.node_class(text, **self.options)
-
         self.add_name(node)
 
         if "data-markdown" not in self.options:
@@ -92,15 +93,19 @@ class SpeakerNoteDirective(Directive):
     final_argument_whitespace = False
 
     option_spec = {"class": directives.class_option}
+
     node_class = SpeakerNotes
 
     def run(self):
         """Build speaker notes node."""
         set_classes(self.options)
+
         self.assert_has_content()
+
         text = "\n".join(self.content)
         node = self.node_class(text, **self.options)
         self.add_name(node)
+
         self.state.nested_parse(self.content, self.content_offset, node)
         return [node]
 
