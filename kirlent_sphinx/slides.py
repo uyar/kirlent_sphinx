@@ -1,7 +1,12 @@
 # Copyright (C) 2019 H. Turgut Uyar <uyar@tekir.org>
 #
-# Derived from the sphinxjp.themes.revealjs project
-# by tell-k <ffk2005@gmail.com>.
+# Derived from the sphinxjp.themes.revealjs project:
+#   https://github.com/tell-k/sphinxjp.themes.revealjs
+#
+# The sphinxjp.themes.revealjs python package is
+# Copyright (c) 2013 tell-k
+#
+# Please read the LICENSE_sphinxjp.themes.revealjs.txt file for details.
 
 from docutils import nodes
 from docutils.parsers.rst import Directive, directives
