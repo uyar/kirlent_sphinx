@@ -13,12 +13,13 @@ def get_path():
     """Get the template path.
 
     :sig: () -> str
+    :return: Base path for the templates of this extension.
     """
     return str(_template_path)
 
 
 def setup(app):
-    """Add the directives and theme to Sphinx.
+    """Add the directives and themes of this extension to Sphinx.
 
     :sig: (sphinx.application.Sphinx) -> None
     :param app: Sphinx application to setup.
