@@ -20,11 +20,6 @@ class SpeakerNotes(nodes.General, nodes.Element):
     """Node for speaker notes on a slide."""
 
 
-def heading(argument):
-    """Get the directives choices for heading tags."""
-    return directives.choice(argument, ("h1", "h2", "h3", "h4", "h5", "h6"))
-
-
 class SlideDirective(Directive):
     """Directive for a slide."""
 
@@ -37,7 +32,7 @@ class SlideDirective(Directive):
         "id": directives.unchanged,
         "class": directives.class_option,
         "noheading": directives.flag,
-        "title-heading": heading,
+        "title-heading": lambda t: directives.choice(t, ("h1", "h2", "h3", "h4", "h5", "h6")),
         "subtitle": directives.unchanged,
         "subtitle-heading": directives.unchanged,
         "data-autoslide": directives.unchanged,
