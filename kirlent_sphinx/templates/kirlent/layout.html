@@ -16,9 +16,9 @@ Master layout template for Sphinx themes.
 {# XXX necessary? #}
 {%- if url_root == '#' %}{% set url_root = '' %}{% endif %}
 {%- if not embedded and docstitle %}
-{%- set titlesuffix = " &mdash; "|safe + docstitle|e %}
+{%- set page_title = docstitle|e %}
 {%- else %}
-{%- set titlesuffix = "" %}
+{%- set page_title = "" %}
 {%- endif %}
 
 {%- macro script() %}
@@ -48,7 +48,7 @@ Master layout template for Sphinx themes.
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     {%- block htmltitle %}
-    <title>{{ title|striptags|e }}{{ titlesuffix }}</title>
+    <title>{{ page_title }}</title>
     {%- endblock %}
 
     {{ metatags }}
