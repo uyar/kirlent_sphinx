@@ -128,7 +128,9 @@ def visit_slide(self, node):
     subtitle = node.get("subtitle")
     subtitle_heading = node.get("subtitle-heading", "h3")
 
-    if node.get("data-markdown") is not None:
+    md_slide = node.get("data-markdown")
+
+    if md_slide is not None:
         title_base = "%(heading)s %(title)s \n"
         title_text = None
         if title:
@@ -155,8 +157,9 @@ def visit_slide(self, node):
 
     self.body.append(self.starttag(node, "section", **section_attrs))
     self.body.append('<div class="content">\n')
-    if node.get("data-markdown") is not None:
-        if node.get("data-markdown") == "":
+
+    if md_slide is not None:
+        if md_slide == "":
             self.body.append("<script type='text/template'>\n")
             if title_text:
                 self.body.append(title_text)
