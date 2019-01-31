@@ -103,18 +103,19 @@ class SpeakerNoteDirective(Directive):
         return [node]
 
 
+_MARKDOWN_HEADINGS = {
+    "h1": "#",
+    "h2": "##",
+    "h3": "###",
+    "h4": "####",
+    "h5": "#####",
+    "h6": "######",
+}
+
+
 def visit_slide(self, node):
     """Build start tag for a slide."""
     section_attrs = {}
-
-    markdown_headings = {
-        "h1": "#",
-        "h2": "##",
-        "h3": "###",
-        "h4": "####",
-        "h5": "#####",
-        "h6": "######",
-    }
 
     if node.get("id"):
         section_attrs.update({"ids": [node.get("id")]})
@@ -138,14 +139,14 @@ def visit_slide(self, node):
         title_text = None
         if title:
             title_text = title_base % {
-                "heading": markdown_headings.get(title_heading),
+                "heading": _MARKDOWN_HEADINGS.get(title_heading),
                 "title": title,
             }
 
         subtitle_text = None
         if subtitle:
             subtitle_text = title_base % {
-                "heading": markdown_headings.get(subtitle_heading),
+                "heading": _MARKDOWN_HEADINGS.get(subtitle_heading),
                 "title": subtitle,
             }
     else:
@@ -200,7 +201,6 @@ def setup(app):
     :sig: (sphinx.application.Sphinx) -> None
     """
     logger.info("Initializing Kirlent directives")
-
     app.add_node(Slide, html=(visit_slide, depart_slide))
     app.add_node(SpeakerNotes, html=(visit_speaker_note, depart_speaker_note))
     app.add_directive("slide", SlideDirective)
