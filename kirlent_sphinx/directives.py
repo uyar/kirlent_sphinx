@@ -41,7 +41,6 @@ class SlideDirective(Directive):
         "subtitle": directives.unchanged,
         "subtitle-heading": directives.unchanged,
         "data-autoslide": directives.unchanged,
-        "data-markdown": directives.unchanged,
         "data-transition": directives.unchanged,
         "data-transition-speed": directives.unchanged,
         "data-background": directives.unchanged,
@@ -49,6 +48,7 @@ class SlideDirective(Directive):
         "data-background-size": directives.unchanged,
         "data-background-transition": directives.unchanged,
         "data-state": directives.unchanged,
+        "data-markdown": directives.unchanged,
         "data-separator": directives.unchanged,
         "data-separator-vertical": directives.unchanged,
         "data-separator-notes": directives.unchanged,
@@ -74,24 +74,9 @@ class SlideDirective(Directive):
 
         node["noheading"] = "noheading" in self.options
 
-        options_list = (
-            "id",
-            "title-heading",
-            "subtitle-heading",
-            "data-autoslide",
-            "data-transition",
-            "data-transition-speed",
-            "data-background",
-            "data-background-repeat",
-            "data-background-size",
-            "data-background-transition",
-            "data-state",
-            "data-markdown",
-            "data-separator",
-            "data-separator-vertical",
-            "data-separator-notes",
-            "data-charset",
-        )
+        options_list = [
+            o for o in self.option_spec if o not in {"class", "noheading", "subtitle"}
+        ]
         for option in options_list:
             if option in self.options:
                 node[option] = self.options.get(option)
