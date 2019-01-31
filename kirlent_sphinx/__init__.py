@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from . import directives
+from . import slides
 
 
 __version__ = "0.1.0"
@@ -24,5 +24,5 @@ def setup(app):
     :sig: (sphinx.application.Sphinx) -> None
     :param app: Sphinx application to setup.
     """
-    directives.setup(app)
+    slides.setup(app)
     app.add_html_theme("kirlent", str(Path(_template_path, "kirlent")))
