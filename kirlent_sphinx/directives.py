@@ -78,7 +78,7 @@ class SlideDirective(Directive):
         return [node]
 
 
-class SpeakerNoteDirective(Directive):
+class SpeakerNotesDirective(Directive):
     """Directive for a speaker notes entry."""
 
     has_content = True
@@ -128,7 +128,6 @@ def visit_slide(self, node):
     title = None
     if node.get("title") and (not node.get("noheading")):
         title = node.get("title")
-
     title_heading = node.get("title-heading", "h2")
 
     subtitle = node.get("subtitle")
@@ -204,4 +203,4 @@ def setup(app):
     app.add_node(Slide, html=(visit_slide, depart_slide))
     app.add_node(SpeakerNotes, html=(visit_speaker_note, depart_speaker_note))
     app.add_directive("slide", SlideDirective)
-    app.add_directive("speaker-notes", SpeakerNoteDirective)
+    app.add_directive("speaker-notes", SpeakerNotesDirective)
