@@ -33,10 +33,6 @@
 from docutils import nodes
 from docutils.parsers.rst import Directive, directives
 from docutils.parsers.rst.roles import set_classes
-from sphinx.util import logging
-
-
-logger = logging.getLogger(__name__)
 
 
 class Slide(nodes.General, nodes.Element):
@@ -211,7 +207,6 @@ def setup(app):
     :sig: (sphinx.application.Sphinx) -> None
     :param app: Application to add the directives to.
     """
-    logger.info("Initializing Kirlent directives")
     app.add_node(Slide, html=(visit_slide, depart_slide))
     app.add_node(SpeakerNotes, html=(visit_speaker_note, depart_speaker_note))
     app.add_directive("slide", SlideDirective)
