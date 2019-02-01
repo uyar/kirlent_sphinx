@@ -73,8 +73,6 @@ class SlideDirective(Directive):
         "data-charset": directives.unchanged,
     }
 
-    node_class = Slide
-
     def run(self):
         """Build a slide node from this directive."""
         self.assert_has_content()
@@ -82,7 +80,7 @@ class SlideDirective(Directive):
         set_classes(self.options)
 
         text = "\n".join(self.content)
-        node = self.node_class(text, **self.options)
+        node = Slide(text, **self.options)
         self.add_name(node)
 
         if "data-markdown" not in self.options:
@@ -106,8 +104,6 @@ class SpeakerNotesDirective(Directive):
 
     option_spec = {"class": directives.class_option}
 
-    node_class = SpeakerNotes
-
     def run(self):
         """Build a speaker notes node from this directive."""
         self.assert_has_content()
@@ -115,7 +111,7 @@ class SpeakerNotesDirective(Directive):
         set_classes(self.options)
 
         text = "\n".join(self.content)
-        node = self.node_class(text, **self.options)
+        node = SpeakerNotes(text, **self.options)
         self.add_name(node)
 
         self.state.nested_parse(self.content, self.content_offset, node)
