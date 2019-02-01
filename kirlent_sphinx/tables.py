@@ -71,18 +71,18 @@ def _parse_argument_map(argument, argmap, param):
     return [norm(arg) for arg in args]
 
 
-_alignment_map = dict(
-    l="left",
-    r="right",
-    c="centered",
-    j="justified",
-    left="left",
-    right="right",
-    center="centered",
-    centered="centered",  # compat alias
-    justify="justified",
-    justified="justified",  # compat alias
-)
+_alignment_map = {
+    "l": "left",
+    "r": "right",
+    "c": "centered",
+    "j": "justified",
+    "left": "left",
+    "right": "right",
+    "center": "centered",
+    "centered": "centered",
+    "justify": "justified",
+    "justified": "justified",
+}
 
 
 def alignment_list(argument):
@@ -130,6 +130,8 @@ def divider_list(argument):
 
 
 class ExtendedRSTTable(RSTTable):
+    """A directive for generating tables with more details."""
+
     option_spec = RSTTable.option_spec.copy()
     option_spec.update(
         {
