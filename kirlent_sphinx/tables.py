@@ -152,6 +152,9 @@ class ExtendedRSTTable(RSTTable):
         return result
 
     def _update_table_classes(self, table):
+        table_classes = table["classes"]
+        table_classes.append("table")
+
         # figure out how many header rows & columns
         options = self.options
         header_cols = options.get("header-columns") or 0
