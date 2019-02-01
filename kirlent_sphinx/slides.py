@@ -184,7 +184,7 @@ def visit_slide(self, node):
         self.set_first_last(node)
 
 
-def depart_slide(self, node=None):
+def depart_slide(self, node):
     """Build end tag for a slide node."""
     self.body.append("</div>\n")  # for closing the Bulma content div
     self.body.append("</section>\n")
@@ -196,7 +196,7 @@ def visit_speaker_note(self, node):
     self.set_first_last(node)
 
 
-def depart_speaker_note(self, node=None):
+def depart_speaker_note(self, node):
     """Build end tag for a speaker notes node."""
     self.body.append("</aside>\n")
 
