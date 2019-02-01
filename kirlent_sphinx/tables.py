@@ -100,7 +100,7 @@ def divider_list(argument):
     return _parse_argument_map(argument, _divider_map, "divider style")
 
 
-class FancyTable(RSTTable):
+class ExtendedRSTTable(RSTTable):
     option_spec = RSTTable.option_spec.copy()
     option_spec.update(
         {
@@ -239,4 +239,7 @@ def setup(app):
     :sig: (sphinx.application.Sphinx) -> None
     :param app: Application to add the directives to.
     """
-    app.add_directive("fancy-table", FancyTable)
+    directive_map = directives._directives
+    if directive_map.get("table") is RSTTable:
+        directive_map.pop("table")
+    app.add_directive("table", ExtendedRSTTable)
