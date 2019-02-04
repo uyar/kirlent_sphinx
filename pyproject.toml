@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "kirlent_sphinx"
 version = "0.1.0"
-description = "Sphinx extension for the Kirlent educational content management system."
+description = "Sphinx extension for slides and extended tables."
 readme = "README.rst"
 
 authors = ["H. Turgut Uyar <uyar@tekir.org>"]
