@@ -1,9 +1,10 @@
 [tool.poetry]
 name = "kirlent_sphinx"
 version = "0.1.0"
-description = "Kirlent extensions to Sphinx."
+description = "Sphinx extension for the Kirlent educational content management system."
+readme = "README.rst"
 
-authors = ["H. Turgut Uyar"]
+authors = ["H. Turgut Uyar <uyar@tekir.org>"]
 license = "BSD-3-Clause"
 
 [tool.poetry.dependencies]
