@@ -5,7 +5,7 @@ from pathlib import Path
 from . import slides, tables
 
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 
 _template_path = Path(__file__).parent.joinpath("templates")
