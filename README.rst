@@ -26,16 +26,16 @@ respect to the sphinxjp.themes.revealjs package:
 
     .. slide:: Slide Title
 
-    .. container:: columns
+       .. container:: columns
 
-       .. container:: column is-one-third
+          .. container:: column is-one-third
 
-          - item 1
-          - item 2
+             - item 1
+             - item 2
 
-       .. container:: column is-two-thirds
+          .. container:: column is-two-thirds
 
-          - item 3
+             - item 3
 
 .. _cloud_sptheme: https://cloud-sptheme.readthedocs.io/en/latest/lib/cloud_sptheme.ext.table_styling.html
 .. _sphinxjp.themes.revealjs: https://github.com/tell-k/sphinxjp.themes.revealjs
