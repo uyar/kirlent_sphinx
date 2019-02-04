@@ -1,3 +1,5 @@
+# Copyright (C) 2019 H. Turgut Uyar <uyar@tekir.org>
+
 from pathlib import Path
 
 from . import slides, tables
