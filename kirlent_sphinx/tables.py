@@ -42,7 +42,6 @@ from itertools import zip_longest
 
 from docutils import nodes
 from docutils.parsers.rst import directives
-from docutils.parsers.rst.directives.tables import RSTTable
 from sphinx.directives.patches import RSTTable
 
 
