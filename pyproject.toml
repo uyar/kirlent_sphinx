@@ -22,11 +22,14 @@ classifiers = [
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.5",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
     "Topic :: Text Processing :: Markup :: HTML"
 ]
 
 [tool.poetry.dependencies]
-python = "^3.6"
+python = "^3.5"
 sphinx = "^1.8"
 
 [tool.poetry.dev-dependencies]
@@ -41,7 +44,7 @@ line-length = 96
 [tool.tox]
 legacy_tox_ini = """
 [tox]
-envlist = py36, style
+envlist = py{37,36,35}, pypy3, style
 skipsdist = True
 
 [testenv]
