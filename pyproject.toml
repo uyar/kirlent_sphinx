@@ -41,8 +41,15 @@ line-length = 96
 [tool.tox]
 legacy_tox_ini = """
 [tox]
-envlist = style
+envlist = py36, style
 skipsdist = True
+
+[testenv]
+whitelist_externals = poetry
+skip_install = true
+commands =
+    poetry install -v
+    poetry run {posargs:pytest}
 
 [testenv:style]
 whitelist_externals = poetry
