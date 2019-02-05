@@ -4,5 +4,7 @@ from typing import Dict
 
 import sphinx.application
 
+__version__ = ...  # type: str
+
 def get_path() -> str: ...
 def setup(app: sphinx.application.Sphinx) -> Dict[str, str]: ...
