@@ -1,42 +1,73 @@
 Copyright (C) 2019 H. Turgut Uyar <uyar@tekir.org>
 
 kirlent_sphinx is a Sphinx extension that is primarily meant to be used with
-the Kirlent educational content management system, although it can be used
-as a regular Sphinx extension. It consists of the following components:
+the `Kırlent`_ educational content management system, although it can be used
+as a regular Sphinx extension.
 
-- An extended ``table`` directive derived from the `cloud_sptheme`_ package.
+Features
+--------
 
-- A ``slide`` directive and a corresponding, RevealJS-based HTML theme derived
-  from the `sphinxjp.themes.revealjs`_ package.
+kirlent_sphinx provides the following components:
 
-The changes to cloud_sptheme are very small at the moment and the documentation
-for the original package should apply. There are some changes to note with
-respect to the sphinxjp.themes.revealjs package:
+- An extended ``table`` directive derived from the `Cloud Sphinx Theme`_
+  project.
 
-- The ``revealjs`` directive has been renamed to ``slide``.
+- A ``slide`` directive and a corresponding HTML theme based on `RevealJS`_,
+  derived from the `sphinxjp.themes.revealjs`_ project.
 
-- The ``rv_note`` directive has been renamed to ``speaker-notes``.
+Getting started
+---------------
 
-- The ``rv_small`` and ``rv_code`` directives have been removed.
+You can install kirlent_sphinx with pip::
 
-- The HTML theme uses pygments instead of highlight.js.
+  pip install kirlent_sphinx
 
-- The HTML theme uses `bulma`_ for styling. So, for example, you can write
-  something like::
+To enable it in your project, make the following changes in ``conf.py``:
 
-    .. slide:: Slide Title
+- Add ``kirlent_sphinx`` to extensions::
 
-       .. container:: columns
+    extensions = ["kirlent_sphinx"]
 
-          .. container:: column is-one-third
+- Set ``kirlent`` as the theme::
 
-             - item 1
-             - item 2
+    html_theme = "kirlent"
 
-          .. container:: column is-two-thirds
+- Disable index generation::
 
-             - item 3
+    html_use_index = False
 
-.. _cloud_sptheme: https://cloud-sptheme.readthedocs.io/en/latest/lib/cloud_sptheme.ext.table_styling.html
+Usage
+-----
+
+For the extended ``table`` directive, consult the documentation
+of the `table_styling`_ extension of the `Cloud Sphinx Theme`_ project.
+
+The ``slide`` and ``speaker-notes`` directives are derived from the
+``revealjs`` and ``rv_note`` directives of the `sphinxjp.themes.revealjs`_
+project. The ``rv_small`` and ``rv_code`` directives of that project have been
+removed.
+
+The Kırlent HTML theme uses pygments for code highlighting instead of
+highlight.js which is used by the original theme. In addition, it uses
+the `Bulma`_ framework for styling. So, Bulma classes are available
+by default::
+
+  .. slide:: Slide Title
+
+     .. container:: columns
+
+        .. container:: column is-one-third
+
+           - item 1
+           - item 2
+
+        .. container:: column is-two-thirds
+
+           - item 3
+
+.. _Kırlent: https://gitlab.com/tekir/kirlent/
+.. _Cloud Sphinx Theme: https://cloud-sptheme.readthedocs.io/en/latest/
+.. _table_styling: https://cloud-sptheme.readthedocs.io/en/latest/lib/cloud_sptheme.ext.table_styling.html
 .. _sphinxjp.themes.revealjs: https://github.com/tell-k/sphinxjp.themes.revealjs
-.. _bulma: https://bulma.io/
+.. _RevealJS: https://revealjs.com/
+.. _Bulma: https://bulma.io/
