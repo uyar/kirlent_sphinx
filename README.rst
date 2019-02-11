@@ -1,5 +1,3 @@
-Copyright (C) 2019 H. Turgut Uyar <uyar@tekir.org>
-
 kirlent_sphinx is a Sphinx extension that is primarily meant to be used with
 the `Kırlent`_ educational content management system, although it can be used
 as a regular Sphinx extension.
@@ -68,6 +66,26 @@ by default::
      .. speaker-notes::
 
         some extra explanation
+
+License
+-------
+
+Copyright (C) 2019 H. Turgut Uyar <uyar@tekir.org>.
+
+kirlent_sphinx is released under the BSD license. Read the included
+``LICENSE.txt`` file for details.
+
+kirlent_sphinx contains code derived from the `Cloud Sphinx Theme`_ project
+which is released under the BSD license. Read the included
+``LICENSE_cloud_spheme.txt`` file for details.
+
+kirlent_sphinx contains code derived from the `sphinxjp.themes.revealjs`_
+project which is released under the MIT license. Read the included
+``LICENSE_sphinxjp.themes.revealjs.txt`` file for details.
+
+kirlent_sphinx contains code from the `RevealJS`_ project which is
+released under the MIT license. Read the included ``LICENSE_revealjs.txt``
+file for details.
 
 .. _Kırlent: https://gitlab.com/tekir/kirlent/
 .. _Cloud Sphinx Theme: https://cloud-sptheme.readthedocs.io/en/latest/
