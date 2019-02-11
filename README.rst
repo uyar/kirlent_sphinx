@@ -70,7 +70,7 @@ by default::
 License
 -------
 
-Copyright (C) 2019 H. Turgut Uyar <uyar@tekir.org>.
+Copyright (C) 2019 H. Turgut Uyar <uyar@tekir.org>
 
 kirlent_sphinx is released under the BSD license. Read the included
 ``LICENSE.txt`` file for details.
