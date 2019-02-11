@@ -50,26 +50,24 @@ removed.
 The Kırlent HTML theme uses pygments for code highlighting instead of
 highlight.js which is used by the original theme. In addition, it uses
 the `Bulma`_ framework for styling. So, Bulma classes are available
-by default:
+by default::
 
-.. code-block:: rest
+  .. slide:: Slide title
 
-    .. slide:: Slide title
+     .. container:: columns
 
-       .. container:: columns
+        .. container:: column is-one-third
 
-          .. container:: column is-one-third
+           - item 1a
+           - item 1b
 
-             - item 1a
-             - item 1b
+        .. container:: column is-two-thirds
 
-          .. container:: column is-two-thirds
+           - item 2
 
-             - item 2
+     .. speaker-notes::
 
-       .. speaker-notes::
-
-          some extra explanation
+        some extra explanation
 
 .. _Kırlent: https://gitlab.com/tekir/kirlent/
 .. _Cloud Sphinx Theme: https://cloud-sptheme.readthedocs.io/en/latest/
