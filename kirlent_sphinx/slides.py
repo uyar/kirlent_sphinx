@@ -135,7 +135,6 @@ def visit_slide(self, node):
     subtitle_text = (template % {"mark": subtitle_mark, "text": subtitle}) if subtitle else None
 
     self.body.append(self.starttag(node, "section", **section_attrs))
-    self.body.append('<div class="content">\n')  # for Bulma
 
     if md_slide is not None:
         if md_slide == "":
@@ -156,7 +155,6 @@ def visit_slide(self, node):
 
 def depart_slide(self, node):
     """Build end tag for a slide node."""
-    self.body.append("</div>\n")  # for closing the Bulma content div
     self.body.append("</section>\n")
 
 
