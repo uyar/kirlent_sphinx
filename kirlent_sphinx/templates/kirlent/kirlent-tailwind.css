@@ -36,8 +36,4 @@
   @apply bg-transparent;
 }
 
-.reveal .slides section pre {
-  @apply shadow-none;
-}
-
 @tailwind utilities;

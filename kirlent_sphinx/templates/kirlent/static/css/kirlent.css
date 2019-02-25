@@ -545,10 +545,6 @@ table {
   background-color: transparent;
 }
 
-.reveal .slides section pre {
-  box-shadow: none;
-}
-
 .list-reset {
   list-style: none;
   padding: 0;
