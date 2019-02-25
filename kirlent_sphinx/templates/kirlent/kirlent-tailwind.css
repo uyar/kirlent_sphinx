@@ -32,10 +32,6 @@
   @apply leading-normal text-left;
 }
 
-.reveal .slides section h2 {
-  @apply normal-case;
-}
-
 .reveal .slides section em {
   @apply roman text-alert;
 }
