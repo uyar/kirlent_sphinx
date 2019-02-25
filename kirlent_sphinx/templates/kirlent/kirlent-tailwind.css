@@ -36,4 +36,8 @@
   @apply normal-case;
 }
 
+.reveal .slides section em {
+  @apply roman text-alert;
+}
+
 @tailwind utilities;
