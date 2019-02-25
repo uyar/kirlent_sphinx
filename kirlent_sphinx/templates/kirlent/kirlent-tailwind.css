@@ -40,4 +40,12 @@
   @apply roman text-alert;
 }
 
+.reveal .slides section .highlight {
+  @apply bg-transparent;
+}
+
+.reveal .slides section pre {
+  @apply shadow-none;
+}
+
 @tailwind utilities;

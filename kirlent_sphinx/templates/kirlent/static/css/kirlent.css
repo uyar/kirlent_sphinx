@@ -550,6 +550,14 @@ table {
   color: #e3342f;
 }
 
+.reveal .slides section .highlight {
+  background-color: transparent;
+}
+
+.reveal .slides section pre {
+  box-shadow: none;
+}
+
 .list-reset {
   list-style: none;
   padding: 0;
