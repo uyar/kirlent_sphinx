@@ -536,6 +536,15 @@ table {
   flex: none;
 }
 
+.reveal .slides section {
+  line-height: 1.5;
+  text-align: left;
+}
+
+.reveal .slides section h2 {
+  text-transform: none;
+}
+
 .list-reset {
   list-style: none;
   padding: 0;
@@ -6130,14 +6139,6 @@ table {
 
 .z-auto {
   z-index: auto;
-}
-
-.reveal .slides {
-  text-align: left;
-}
-
-.reveal h2 {
-  text-transform: none;
 }
 
 @media (min-width: 576px) {

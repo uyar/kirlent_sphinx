@@ -28,12 +28,12 @@
   @apply w-3/4 flex-none;
 }
 
+.reveal .slides section {
+  @apply leading-normal text-left;
+}
+
+.reveal .slides section h2 {
+  @apply normal-case;
+}
+
 @tailwind utilities;
-
-.reveal .slides {
-  text-align: left;
-}
-
-.reveal h2 {
-  text-transform: none;
-}
