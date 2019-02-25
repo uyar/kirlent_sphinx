@@ -536,10 +536,6 @@ table {
   flex: none;
 }
 
-.reveal .slides section {
-  line-height: 1.5;
-}
-
 .reveal .slides section em {
   font-style: normal;
   color: #e3342f;
