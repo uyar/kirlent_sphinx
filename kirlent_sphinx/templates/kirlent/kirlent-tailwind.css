@@ -28,10 +28,6 @@
   @apply w-3/4 flex-none;
 }
 
-.reveal .slides section em {
-  @apply roman text-alert;
-}
-
 .reveal .slides section .highlight {
   @apply bg-transparent;
 }

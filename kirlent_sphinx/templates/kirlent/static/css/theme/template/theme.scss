@@ -89,7 +89,8 @@ body {
 }
 
 .reveal em {
-	font-style: italic;
+	font-style: normal;
+	color: $alertColor;
 }
 
 .reveal ol,

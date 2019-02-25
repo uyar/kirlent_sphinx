@@ -536,11 +536,6 @@ table {
   flex: none;
 }
 
-.reveal .slides section em {
-  font-style: normal;
-  color: #e3342f;
-}
-
 .reveal .slides section .highlight {
   background-color: transparent;
 }
