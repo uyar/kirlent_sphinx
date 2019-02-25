@@ -1,14 +1,3 @@
-{#
-
-revealjs/layout.html
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Master layout template for Sphinx themes.
-
-:copyright: tell-k <ffk2005@gmail.com>
-:license: MIT License
-
-#}
 {%- block doctype -%}
 <!DOCTYPE html>
 {%- endblock %}
@@ -22,30 +11,31 @@ Master layout template for Sphinx themes.
 {%- endif %}
 
 {%- macro script() %}
-<script src="{{ pathto('_static/js/jquery.min.js', 1) }}"></script>
-<script src="{{ pathto('_static/lib/js/head.min.js', 1) }}"></script>
-<script src="{{ pathto('_static/js/reveal.js', 1) }}"></script>
+    <script src="{{ pathto('_static/lib/js/head.min.js', 1) }}"></script>
+    <script src="{{ pathto('_static/js/reveal.js', 1) }}"></script>
 {%- endmacro %}
 
 {%- macro css() %}
-<link rel="stylesheet" href="{{ pathto('_static/css/reveal.css', 1) }}">
-<link rel="stylesheet" href="{{ pathto('_static/css/theme/' + (theme_theme or 'black') + '.css', 1) }}" id="theme">
-<link rel="stylesheet" href="{{ pathto('_static/lib/css/zenburn.css', 1) }}">
-<link rel="stylesheet" href="{{ pathto('_static/pygments.css', 1) }}">
-<link rel="stylesheet" href="{{ pathto('_static/css/bulma.min.css', 1) }}">
-<link rel="stylesheet" href="{{ pathto('_static/css/kirlent.css', 1) }}">
-<link rel="stylesheet" href="{{ pathto('_static/' + style, 1) }}" type="text/css" />
+    <link rel="stylesheet" href="{{ pathto('_static/css/reveal.css', 1) }}">
+    <link rel="stylesheet" href="{{ pathto('_static/css/theme/' + (theme_theme or 'white') + '.css', 1) }}" id="theme">
+
+    <link rel="stylesheet" href="{{ pathto('_static/pygments.css', 1) }}">
+
+    <link rel="stylesheet" href="{{ pathto('_static/css/bulma.min.css', 1) }}">
+    <link rel="stylesheet" href="{{ pathto('_static/css/' + style, 1) }}" type="text/css" />
 {%- for cssfile in css_files %}
-<link rel="stylesheet" href="{{ pathto(cssfile, 1) }}" type="text/css" />
+    <link rel="stylesheet" href="{{ pathto(cssfile, 1) }}" type="text/css" />
 {%- endfor %}
 {%- endmacro %}
 
 <html lang="{{ theme_lang }}">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta charset="utf-8"/>
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 
     {%- block htmltitle %}
     <title>{{ page_title }}</title>
@@ -77,8 +67,8 @@ Master layout template for Sphinx themes.
     <![endif]-->
 
     {%- for scriptfile in script_files %}
-    {%- if scriptfile not in ('_static/jquery.js', '_static/underscore.js', '_static/doctools.js') %}
-      <script type="text/javascript" src="{{ pathto(scriptfile, 1) }}"></script>
+    {%- if scriptfile not in ('_static/underscore.js', '_static/doctools.js') %}
+    <script type="text/javascript" src="{{ pathto(scriptfile, 1) }}"></script>
     {%- endif %}
     {%- endfor %}
   </head>
@@ -89,14 +79,8 @@ Master layout template for Sphinx themes.
       </div>
     </div>
     {{ script() }}
+
     <script>
-
-      // change DOM for reveal.js
-      $("div.section h1").remove();
-      var content = $("div.section").html();
-      $("div.section").remove();
-      $("div.slides").html(content);
-
       Reveal.initialize({
         width: {{ theme_width }},
         height: {{ theme_height }},
@@ -149,19 +133,6 @@ Master layout template for Sphinx themes.
             {% endfor %}
         },
         {% endif -%}
-        {%- if theme_leap %}
-        leap: {
-            {% for k, v in theme_leap.items() -%}
-                {% if k in ('autoCenter', 'naturalSwipe') -%}
-                    {{ k }}: {{ v|lower }}{% if not loop.last -%},{% endif %}
-                {% elif k in ('pointerColor') -%}
-                    {{ k }}: "{{ v }}"{% if not loop.last -%},{% endif %}
-                {% else -%}
-                    {{ k }}: {{ v }}{% if not loop.last -%},{% endif %}
-                {% endif -%}
-            {% endfor -%}
-        },
-        {% endif %}
         {%- if theme_math  %}
         math: {
             {% for k, v in theme_math.items() -%}
