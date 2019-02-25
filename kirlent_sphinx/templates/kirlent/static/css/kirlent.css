@@ -538,11 +538,6 @@ table {
 
 .reveal .slides section {
   line-height: 1.5;
-  text-align: left;
-}
-
-.reveal .slides section h2 {
-  text-transform: none;
 }
 
 .reveal .slides section em {
