@@ -201,7 +201,7 @@ class ExtendedRSTTable(RSTTable):
                     assert isinstance(col, nodes.entry)
                     classes = col["classes"]
                     if align:
-                        classes.append("has-text-" + align)
+                        classes.append("text-" + align)
                     if wrap is False:
                         classes.append("nowrap")
                     if clist:
