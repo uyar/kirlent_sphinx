@@ -47,19 +47,18 @@ removed.
 
 The Kırlent HTML theme uses pygments for code highlighting instead of
 highlight.js which is used by the original theme. In addition, it uses
-the `Bulma`_ framework for styling. So, Bulma classes are available
-by default::
+`Tailwind`_ utility classes for styling:
 
   .. slide:: Slide title
 
      .. container:: columns
 
-        .. container:: column is-one-third
+        .. container:: column w-1/3 bg-blue-lighter
 
            - item 1a
            - item 1b
 
-        .. container:: column is-two-thirds
+        .. container:: column bg-red-lighter
 
            - item 2
 
@@ -87,9 +86,13 @@ kirlent_sphinx contains code from the `RevealJS`_ project which is
 released under the MIT license. Read the included ``LICENSE_revealjs.txt``
 file for details.
 
+kirlent_sphinx contains code from the `Tailwind`_ project which is
+released under the MIT license. Read the included ``LICENSE_tailwind.txt``
+file for details.
+
 .. _Kırlent: https://gitlab.com/tekir/kirlent/
 .. _Cloud Sphinx Theme: https://cloud-sptheme.readthedocs.io/en/latest/
 .. _table_styling: https://cloud-sptheme.readthedocs.io/en/latest/lib/cloud_sptheme.ext.table_styling.html
 .. _sphinxjp.themes.revealjs: https://github.com/tell-k/sphinxjp.themes.revealjs
 .. _RevealJS: https://revealjs.com/
-.. _Bulma: https://bulma.io/
+.. _Tailwind: https://tailwindcss.com/

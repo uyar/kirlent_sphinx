@@ -1,10 +1,11 @@
 History
 =======
 
-0.2.0 (2019-02-25)
+0.2.0 (2019-02-26)
 ------------------
 
 - Update reveal.js to 3.7.0.
+- Switch from Bulma to using Tailwind utility classes.
 
 0.1.2 (2019-02-05)
 ------------------
