@@ -581,6 +581,10 @@ table.striped tr.row-even {
   background-color: #dae1e7;
 }
 
+.reveal .highlight {
+  background-color: transparent;
+}
+
 .list-reset {
   list-style: none;
   padding: 0;

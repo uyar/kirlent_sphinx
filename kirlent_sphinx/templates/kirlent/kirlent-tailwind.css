@@ -73,4 +73,8 @@ table.striped tr.row-even {
   @apply bg-grey-light;
 }
 
+.reveal .highlight {
+  @apply bg-transparent;
+}
+
 @tailwind utilities;
