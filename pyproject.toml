@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "kirlent_sphinx"
-version = "0.1.2"
+version = "0.2.0"
 description = "Sphinx extension for slides and extended tables."
 readme = "README.rst"
 
