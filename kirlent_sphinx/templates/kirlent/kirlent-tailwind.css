@@ -64,4 +64,13 @@
   @apply bg-transparent;
 }
 
+table.horizontal-dividers thead tr {
+  border-bottom-width: 6px;
+  border-bottom-style: double;
+}
+
+table.horizontal-dividers tbody tr:not(:first-child) {
+  @apply border-t-2;
+}
+
 @tailwind utilities;

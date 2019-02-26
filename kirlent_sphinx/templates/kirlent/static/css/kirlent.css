@@ -572,6 +572,15 @@ table {
   background-color: transparent;
 }
 
+table.horizontal-dividers thead tr {
+  border-bottom-width: 6px;
+  border-bottom-style: double;
+}
+
+table.horizontal-dividers tbody tr:not(:first-child) {
+  border-top-width: 2px;
+}
+
 .list-reset {
   list-style: none;
   padding: 0;
