@@ -47,7 +47,7 @@ removed.
 
 The Kırlent HTML theme uses pygments for code highlighting instead of
 highlight.js which is used by the original theme. In addition, it uses
-`Tailwind`_ utility classes for styling:
+`Tailwind`_ utility classes for styling::
 
   .. slide:: Slide title
 
