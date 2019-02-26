@@ -568,10 +568,6 @@ table {
   border-right-style: double;
 }
 
-.reveal .slides section .highlight {
-  background-color: transparent;
-}
-
 table.horizontal-dividers thead tr {
   border-bottom-width: 6px;
   border-bottom-style: double;
