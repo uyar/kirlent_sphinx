@@ -40,14 +40,14 @@ def _parse_argument_map(argument, argmap, param):
 _alignment_map = {
     "l": "left",
     "r": "right",
-    "c": "centered",
-    "j": "justified",
+    "c": "center",
+    "j": "justify",
     "left": "left",
     "right": "right",
-    "center": "centered",
-    "centered": "centered",
-    "justify": "justified",
-    "justified": "justified",
+    "center": "center",
+    "centered": "center",
+    "justify": "justify",
+    "justified": "justify",
 }
 
 
