@@ -2999,7 +2999,7 @@ table.striped tr.row-even {
 }
 
 .font-mono {
-  font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+  font-family: Inconsolata, monospace;
 }
 
 .font-hairline {
@@ -8624,7 +8624,7 @@ table.striped tr.row-even {
   }
 
   .sm\:font-mono {
-    font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+    font-family: Inconsolata, monospace;
   }
 
   .sm\:font-hairline {
@@ -14234,7 +14234,7 @@ table.striped tr.row-even {
   }
 
   .md\:font-mono {
-    font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+    font-family: Inconsolata, monospace;
   }
 
   .md\:font-hairline {
@@ -19844,7 +19844,7 @@ table.striped tr.row-even {
   }
 
   .lg\:font-mono {
-    font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+    font-family: Inconsolata, monospace;
   }
 
   .lg\:font-hairline {
@@ -25454,7 +25454,7 @@ table.striped tr.row-even {
   }
 
   .xl\:font-mono {
-    font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+    font-family: Inconsolata, monospace;
   }
 
   .xl\:font-hairline {

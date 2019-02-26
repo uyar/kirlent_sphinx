@@ -142,18 +142,13 @@ body {
   font-style: italic; }
 
 .reveal pre {
-  display: block;
-  position: relative;
-  width: 90%;
-  margin: 0.7em auto;
-  text-align: left;
-  font-size: 0.55em;
-  font-family: monospace;
+  font-family: Inconsolata, monospace;
+  font-size: 0.7em;
   line-height: 1.2em;
   word-wrap: break-word; }
 
 .reveal code {
-  font-family: monospace;
+  font-family: Inconsolata, monospace;
   text-transform: none; }
 
 .reveal pre code {
