@@ -203,7 +203,7 @@ class ExtendedRSTTable(RSTTable):
                     if align:
                         classes.append("text-" + align)
                     if wrap is False:
-                        classes.append("nowrap")
+                        classes.append("whitespace-no-wrap")
                     if clist:
                         classes.extend(clist)
 
