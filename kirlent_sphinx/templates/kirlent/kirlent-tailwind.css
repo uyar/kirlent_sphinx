@@ -1,5 +1,9 @@
 @tailwind preflight;
 
+* {
+  border-color: inherit;
+}
+
 .columns {
   @apply flex flex-row;
 }
@@ -26,6 +30,34 @@
 
 .w-3-4 {
   @apply w-3/4 flex-none;
+}
+
+.no-left-divider {
+  @apply border-l-0;
+}
+
+.single-left-divider {
+  @apply border-l-2;
+}
+
+.double-left-divider {
+  border-left-width: 6px;
+  border-left-style: double;
+}
+
+.no-right-divider,
+.single-right-divider,
+.double-right-divider {
+  @apply border-r-0;
+}
+
+.single-right-divider:last-child {
+  @apply border-r-2;
+}
+
+.double-right-divider:last-child {
+  border-right-width: 6px;
+  border-right-style: double;
 }
 
 .reveal .slides section .highlight {
