@@ -73,4 +73,8 @@ table.horizontal-dividers tbody tr:not(:first-child) {
   @apply border-t-2;
 }
 
+table.striped tr.row-even {
+  @apply bg-grey-light;
+}
+
 @tailwind utilities;
