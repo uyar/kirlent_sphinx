@@ -1,6 +1,11 @@
 History
 =======
 
+0.2.2 (unreleased)
+------------------
+
+- Add support for custom style file.
+
 0.2.1 (2019-02-26)
 ------------------
 
