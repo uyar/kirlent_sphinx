@@ -30,7 +30,7 @@ TABLE_CONTENT_1 = """
 
    .. table::
       :widths: 1 2
-      
+
       +---+---+
       | a | b |
       +---+---+
