@@ -36,7 +36,6 @@ sphinx = "^1.8"
 pytest = "^4.2"
 flake8 = "^3.7"
 flake8-isort = "^2.6"
-pygenstub = "^1.2"
 
 [tool.black]
 line-length = 96
