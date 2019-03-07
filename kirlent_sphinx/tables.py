@@ -234,11 +234,7 @@ class ExtendedRSTTable(RSTTable):
 
 
 def setup(app):
-    """Add the directives to a Sphinx application.
-
-    :sig: (sphinx.application.Sphinx) -> None
-    :param app: Application to add the directives to.
-    """
+    """Add the directives to a Sphinx application."""
     directive_map = directives._directives
     if directive_map.get("table") is RSTTable:
         directive_map.pop("table")

@@ -170,11 +170,7 @@ def depart_speaker_note(self, node):
 
 
 def setup(app):
-    """Add the directives to a Sphinx application.
-
-    :sig: (sphinx.application.Sphinx) -> None
-    :param app: Application to add the directives to.
-    """
+    """Add the directives to a Sphinx application."""
     app.add_node(Slide, html=(visit_slide, depart_slide))
     app.add_node(SpeakerNotes, html=(visit_speaker_note, depart_speaker_note))
     app.add_directive("slide", SlideDirective)
