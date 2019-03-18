@@ -6,8 +6,8 @@
 
 
 // Default mixins and settings -----------------
-@import "../template/mixins";
-@import "../template/settings";
+@import "./template/mixins";
+@import "./template/settings";
 // ---------------------------------------------
 
 
@@ -16,7 +16,7 @@
 @import url(https://fonts.googleapis.com/css?family=Inconsolata:400,700);
 
 
-// Override theme settings (see ../template/settings.scss)
+// Override theme settings (see ./template/settings.scss)
 $backgroundColor: #fff;
 
 $mainColor: #222;
@@ -45,5 +45,5 @@ section.has-dark-background {
 
 
 // Theme template ------------------------------
-@import "../template/theme";
+@import "./template/theme";
 // ---------------------------------------------
