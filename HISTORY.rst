@@ -1,6 +1,11 @@
 History
 =======
 
+0.3.0 (unreleased)
+------------------
+
+- Reduce the various CSS files and clean up.
+
 0.2.2 (2019-03-15)
 ------------------
 
