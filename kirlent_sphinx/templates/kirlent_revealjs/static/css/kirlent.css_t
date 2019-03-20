@@ -3,7 +3,7 @@
  *********************************************/
 
 body {
-  font-size: 40px;
+  font-size: 36px;
   line-height: 1.5;
 }
 
@@ -205,6 +205,14 @@ section a:hover {
 .container {
   width: unset;
   max-width: unset;
+}
+
+/*********************************************
+ * REVEALJS MODIFICATIONS
+ *********************************************/
+
+.reveal .slides {
+  transform: translate(-50%, -50%) scale(1.0) !important;
 }
 
 /*********************************************
