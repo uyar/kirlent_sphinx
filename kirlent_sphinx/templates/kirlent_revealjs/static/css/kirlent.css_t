@@ -11,8 +11,17 @@ body {
  * CONTENT SECTIONING
  *********************************************/
 
-section {
-  padding: 1em;
+section > *:not(h2) {
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+section > h2 {
+  padding: 0.5em 1em;
+}
+
+section > *:last-child {
+  margin-bottom: 1em;
 }
 
 section h1,
@@ -38,6 +47,7 @@ section pre {
   font-size: 0.7em;
   line-height: 1.2;
   word-wrap: break-word;
+  margin-top: 1em;
 }
 
 section ul {
@@ -181,11 +191,20 @@ section a:hover {
 }
 
 /*********************************************
- * PYGMENTS
+ * PYGMENT MODIFICATIONS
  *********************************************/
 
 .highlight {
-  background: transparent;
+  background: unset;
+}
+
+/*********************************************
+ * TAILWIND MODIFICATIONS
+ *********************************************/
+
+.container {
+  width: unset;
+  max-width: unset;
 }
 
 /*********************************************
