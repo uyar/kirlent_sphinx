@@ -40,7 +40,6 @@ class SlideDirective(Directive):
         "data-background-size": directives.unchanged,
         "data-background-transition": directives.unchanged,
         "data-state": directives.unchanged,
-        "data-markdown": directives.unchanged,
         "data-separator": directives.unchanged,
         "data-separator-vertical": directives.unchanged,
         "data-separator-notes": directives.unchanged,
@@ -57,8 +56,7 @@ class SlideDirective(Directive):
         node = Slide(text, **self.options)
         self.add_name(node)
 
-        if "data-markdown" not in self.options:
-            self.state.nested_parse(self.content, self.content_offset, node)
+        self.state.nested_parse(self.content, self.content_offset, node)
 
         if self.arguments:
             node["title"] = " ".join(self.arguments)
@@ -93,16 +91,6 @@ class SpeakerNotesDirective(Directive):
         return [node]
 
 
-_MARKDOWN_HEADINGS = {
-    "h1": "#",
-    "h2": "##",
-    "h3": "###",
-    "h4": "####",
-    "h5": "#####",
-    "h6": "######",
-}
-
-
 def visit_slide(self, node):
     """Build start tag for a slide node."""
     section_attrs = {}
@@ -121,36 +109,20 @@ def visit_slide(self, node):
     subtitle = node.get("subtitle")
     subtitle_heading = node.get("subtitle-heading", "h3")
 
-    md_slide = node.get("data-markdown")
-    if md_slide is not None:
-        template = "%(mark)s %(text)s \n"
-        title_mark = _MARKDOWN_HEADINGS.get(title_heading)
-        subtitle_mark = _MARKDOWN_HEADINGS.get(subtitle_heading)
-    else:
-        template = "<%(mark)s>%(text)s</%(mark)s>\n"
-        title_mark = title_heading
-        subtitle_mark = subtitle_heading
+    template = "<%(mark)s>%(text)s</%(mark)s>\n"
+    title_mark = title_heading
+    subtitle_mark = subtitle_heading
 
     title_text = (template % {"mark": title_mark, "text": title}) if title else None
     subtitle_text = (template % {"mark": subtitle_mark, "text": subtitle}) if subtitle else None
 
     self.body.append(self.starttag(node, "section", **section_attrs))
 
-    if md_slide is not None:
-        if md_slide == "":
-            self.body.append("<script type='text/template'>\n")
-            if title_text:
-                self.body.append(title_text)
-            if subtitle_text:
-                self.body.append(subtitle_text)
-            self.body.append(node.rawsource)
-            self.body.append("</script>\n")
-    else:
-        if title_text:
-            self.body.append(title_text)
-        if subtitle_text:
-            self.body.append(subtitle_text)
-        self.set_first_last(node)
+    if title_text:
+        self.body.append(title_text)
+    if subtitle_text:
+        self.body.append(subtitle_text)
+    self.set_first_last(node)
 
 
 def depart_slide(self, node):
