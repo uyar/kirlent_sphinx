@@ -11,44 +11,44 @@ body {
  * CONTENT SECTIONING
  *********************************************/
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  line-height: 1.2;
-  margin-bottom: 0.7em;
-}
-
 section {
   padding: 1em;
+}
+
+section h1,
+section h2,
+section h3,
+section h4,
+section h5,
+section h6 {
+  line-height: 1.2;
+  margin-bottom: 0.7em;
 }
 
 /*********************************************
  * TEXT CONTENT
  *********************************************/
 
-p {
+section p {
   margin-top: 0.7em;
   margin-bottom: 0.7em;
 }
 
-pre {
+section pre {
   font-size: 0.7em;
   line-height: 1.2;
   word-wrap: break-word;
 }
 
-ul {
+section ul {
   list-style-type: disc;
 }
 
-ul ul {
+section ul ul {
   list-style-type: square;
 }
 
-ul ul ul {
+section ul ul ul {
   list-style-type: circle;
 }
 
@@ -56,13 +56,13 @@ ul ul ul {
  * INLINE TEXT
  *********************************************/
 
-em {
+section em {
   font-style: normal;
   color: #e3342f;
   text-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
 }
 
-strong {
+section strong {
   text-shadow: -1px 1px 2px rgba(100, 100, 100, 0.5);
 }
 
@@ -70,8 +70,8 @@ strong {
  * IMAGE AND MULTIMEDIA
  *********************************************/
 
-img,
-video {
+section img,
+section video {
   max-width: 95%;
   max-height: 95%;
 }
@@ -80,12 +80,12 @@ video {
  * LINKS
  *********************************************/
 
-a {
+section a {
   text-decoration: none;
   color: #2779bd;
 }
 
-a:hover {
+section a:hover {
   color: #6cb2eb;
 }
 
