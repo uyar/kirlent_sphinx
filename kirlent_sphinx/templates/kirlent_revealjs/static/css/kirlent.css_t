@@ -112,6 +112,10 @@ section a:hover {
   .backgrounds {
     background-color: #ffffff;
   }
+
+  .reveal .slides {
+    transform: translate(-50%, -50%) scale(1.0) !important;
+  }
 }
 
 /*********************************************
@@ -210,14 +214,6 @@ section a:hover {
 .container {
   width: unset;
   max-width: unset;
-}
-
-/*********************************************
- * REVEALJS MODIFICATIONS
- *********************************************/
-
-.reveal .slides {
-  transform: translate(-50%, -50%) scale(1.0) !important;
 }
 
 /*********************************************
