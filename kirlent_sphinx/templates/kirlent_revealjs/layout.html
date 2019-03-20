@@ -1,47 +1,22 @@
-{%- block doctype -%}
 <!DOCTYPE html>
-{%- endblock %}
-{%- set url_root = pathto('', 1) %}
-{# XXX necessary? #}
-{%- if url_root == '#' %}{% set url_root = '' %}{% endif %}
-{%- if not embedded and docstitle %}
-{%- set page_title = docstitle|e %}
-{%- else %}
-{%- set page_title = "" %}
-{%- endif %}
+<html lang="{{ theme_lang }}">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 
-{%- macro script() %}
-    <script src="{{ pathto('_static/lib/js/head.min.js', 1) }}"></script>
-    <script src="{{ pathto('_static/js/reveal.js', 1) }}"></script>
-{%- endmacro %}
+    {%- set page_title = "" if embedded or not docstitle else docstitle|e %}
+    <title>{{ page_title }}</title>
 
-{%- macro css() %}
     <link rel="stylesheet" href="{{ pathto('_static/css/reveal.css', 1) }}"/>
     <link rel="stylesheet" href="{{ pathto('_static/css/white.css', 1) }}"/>
     <link rel="stylesheet" href="{{ pathto('_static/pygments.css', 1) }}"/>
     <link rel="stylesheet" href="{{ pathto('_static/css/kirlent.css', 1) }}"/>
     <link rel="stylesheet" href="{{ pathto('_static/' + style, 1) }}"/>
-{%- for cssfile in css_files %}
+    {%- for cssfile in css_files %}
     <link rel="stylesheet" href="{{ pathto(cssfile, 1) }}"/>
-{%- endfor %}
-{%- endmacro %}
-
-<html lang="{{ theme_lang }}">
-  <head>
-    <meta charset="utf-8"/>
-
-    <meta name="apple-mobile-web-app-capable" content="yes"/>
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-
-    {%- block htmltitle %}
-    <title>{{ page_title }}</title>
-    {%- endblock %}
-
-    {{ metatags }}
-
-    {{ css() }}
+    {%- endfor %}
 
     {%- if not embedded %}
       {%- if favicon %}
@@ -76,7 +51,9 @@
         {% block body %}{% endblock %}
       </div>
     </div>
-    {{ script() }}
+
+    <script src="{{ pathto('_static/lib/js/head.min.js', 1) }}"></script>
+    <script src="{{ pathto('_static/js/reveal.js', 1) }}"></script>
 
     <script>
       Reveal.initialize({
@@ -131,18 +108,9 @@
             {% endfor %}
         },
         {% endif -%}
-        {%- if theme_math  %}
-        math: {
-            {% for k, v in theme_math.items() -%}
-                {{ k }}: "{{ v }}"{%- if not loop.last %},{% endif -%}
-            {% endfor -%}
-        },
-        {% endif %}
 
         dependencies: [
            { src: '{{ pathto('_static/lib/js/classList.js', 1) }}', condition: function() { return !document.body.classList; } },
-           { src: '{{ pathto('_static/plugin/markdown/marked.js', 1) }}', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-           { src: '{{ pathto('_static/plugin/markdown/markdown.js', 1) }}', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
            { src: '{{ pathto('_static/plugin/zoom-js/zoom.js', 1) }}', async: true, condition: function() { return !!document.body.classList; } },
            {%- for plugin in theme_plugin_list %}
            { src: '{{ plugin }}', async: true, condition: function() { return !!document.body.classList; } },
