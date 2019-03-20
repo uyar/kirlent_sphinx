@@ -9,10 +9,9 @@
     {%- set page_title = "" if embedded or not docstitle else docstitle|e %}
     <title>{{ page_title }}</title>
 
-    <link rel="stylesheet" href="{{ pathto('_static/css/reveal.css', 1) }}"/>
-    <link rel="stylesheet" href="{{ pathto('_static/css/white.css', 1) }}"/>
     <link rel="stylesheet" href="{{ pathto('_static/css/tailwind.min.css', 1) }}"/>
     <link rel="stylesheet" href="{{ pathto('_static/pygments.css', 1) }}"/>
+    <link rel="stylesheet" href="{{ pathto('_static/css/reveal.css', 1) }}"/>
     <link rel="stylesheet" href="{{ pathto('_static/css/kirlent.css', 1) }}"/>
     <link rel="stylesheet" href="{{ pathto('_static/' + style, 1) }}"/>
     {%- for cssfile in css_files %}
