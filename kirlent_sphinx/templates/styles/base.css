@@ -6,20 +6,7 @@ body {
   font-size: 36px;
   line-height: 1.5;
 }
-
-/*********************************************
- * IMPRESSJS BASICS
- *********************************************/
-
-section.step {
-  position: relative;
-  width: 990px;
-  height: 700px;
-}
-
-section aside.notes {
-  display: none;
-}
+/* IMPRESSJS_BASICS */
 
 /*********************************************
  * CONTENT SECTIONING
@@ -233,3 +220,4 @@ section a:hover {
   width: unset;
   max-width: unset;
 }
+/* REVEALJS_EXTRAS */

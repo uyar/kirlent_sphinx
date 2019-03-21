@@ -207,6 +207,8 @@ section a:hover {
 
 .highlight {
   background: unset;
+  display: flex;
+  justify-content: space-around;
 }
 
 /*********************************************

@@ -1,0 +1,14 @@
+
+/*********************************************
+ * IMPRESSJS BASICS
+ *********************************************/
+
+section.step {
+  position: relative;
+  width: 990px;
+  height: 700px;
+}
+
+section aside.notes {
+  display: none;
+}
