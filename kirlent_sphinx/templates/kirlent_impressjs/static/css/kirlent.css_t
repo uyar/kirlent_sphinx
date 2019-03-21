@@ -22,13 +22,7 @@ section aside.notes {
 }
 
 .impress-enabled .step {
-  margin: 0;
-  opacity: 0;
   transition: opacity 1s;
-}
-
-.impress-enabled .step.active {
-  opacity: 1;
 }
 
 /*********************************************
