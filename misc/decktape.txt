@@ -1,1 +1,6 @@
-decktape -s 1125x795 generic --media=print --maxSlides=60 http://localhost:8000/?fragments=false output.pdf
+decktape generic \
+	-s 1125x795 \
+	--media=print \
+	--maxSlides=$(grep \<section build/html/index.html | wc -l) \
+	"http://localhost:8000/?fragments=false&progress=false" \
+	output.pdf
