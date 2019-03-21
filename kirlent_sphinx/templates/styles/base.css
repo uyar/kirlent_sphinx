@@ -246,13 +246,4 @@ section a:hover {
   display: flex;
   justify-content: space-around;
 }
-
-/*********************************************
- * TAILWIND MODIFICATIONS
- *********************************************/
-
-.container {
-  width: unset;
-  max-width: unset;
-}
 /* REVEALJS_EXTRAS */
