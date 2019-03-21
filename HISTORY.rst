@@ -4,7 +4,9 @@ History
 0.3.0 (unreleased)
 ------------------
 
+- Add impress.js template.
 - Reduce the various CSS files and clean up.
+- Fix some PDF generation issues.
 
 0.2.2 (2019-03-15)
 ------------------
