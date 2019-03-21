@@ -13,7 +13,7 @@ SOURCE = "/dev/shm/kirlent_sphinx"
 
 CONF_PY_CONTENT = """
 extensions = ["kirlent_sphinx"]
-html_theme = "kirlent"
+html_theme = "kirlent_revealjs"
 html_use_index = False
 master_doc = "index"
 """
