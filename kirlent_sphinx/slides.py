@@ -32,6 +32,7 @@ class SlideDirective(Directive):
         "title-heading": lambda t: directives.choice(t, ("h1", "h2", "h3", "h4", "h5", "h6")),
         "subtitle": directives.unchanged_required,
         "subtitle-heading": directives.unchanged,
+
         "data-autoslide": directives.unchanged,
         "data-transition": directives.unchanged,
         "data-transition-speed": directives.unchanged,
@@ -44,6 +45,20 @@ class SlideDirective(Directive):
         "data-separator-vertical": directives.unchanged,
         "data-separator-notes": directives.unchanged,
         "data-charset": directives.unchanged,
+
+        "data-x": directives.unchanged,
+        "data-y": directives.unchanged,
+        "data-z": directives.unchanged,
+        "data-rel-x": directives.unchanged,
+        "data-rel-y": directives.unchanged,
+        "data-rel-z": directives.unchanged,
+        "data-rotate": directives.unchanged,
+        "data-rotate-x": directives.unchanged,
+        "data-rotate-y": directives.unchanged,
+        "data-rotate-z": directives.unchanged,
+        "data-scale": directives.unchanged,
+        "data-autoplay": directives.unchanged,
+        "data-transition-duration": directives.unchanged,
     }
 
     def run(self):
@@ -115,6 +130,10 @@ def visit_slide(self, node):
 
     title_text = (template % {"mark": title_mark, "text": title}) if title else None
     subtitle_text = (template % {"mark": subtitle_mark, "text": subtitle}) if subtitle else None
+
+    section_attrs["class"] = "step slide"
+    section_attrs["data-rel-x"] = "1300"
+    section_attrs["data-rel-y"] = "0"
 
     self.body.append(self.starttag(node, "section", **section_attrs))
 
