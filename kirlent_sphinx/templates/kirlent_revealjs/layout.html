@@ -24,17 +24,6 @@
       {%- endif %}
     {%- endif %}
 
-    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
-    <script>
-        if(window.location.search.match(/print-pdf/gi)) {
-            var link = document.createElement('link');
-            link.rel = 'stylesheet';
-            link.type = 'text/css';
-            link.href = '{{ pathto('_static/css/print/pdf.css', 1) }}';
-            document.getElementsByTagName('head')[0].appendChild(link);
-        }
-    </script>
-
     <!--[if lt IE 9]>
     <script src="{{ pathto('_static/lib/js/html5shiv.js', 1) }}"></script>
     <![endif]-->
