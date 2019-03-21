@@ -123,6 +123,16 @@ section a:hover {
   .reveal .slides {
     transform: translate(-50%, -50%) scale(1.0) !important;
   }
+
+  section em {
+    font-style: italic;
+    color: #000000;
+    text-shadow: none;
+  }
+
+  section strong {
+    text-shadow: none;
+  }
 }
 
 /*********************************************
