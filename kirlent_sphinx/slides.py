@@ -33,7 +33,6 @@ class SlideDirective(Directive):
         "title-heading": lambda t: directives.choice(t, ("h1", "h2", "h3", "h4", "h5", "h6")),
         "subtitle": directives.unchanged_required,
         "subtitle-heading": directives.unchanged,
-
         "data-autoslide": directives.unchanged,
         "data-transition": directives.unchanged,
         "data-transition-speed": directives.unchanged,
@@ -46,7 +45,6 @@ class SlideDirective(Directive):
         "data-separator-vertical": directives.unchanged,
         "data-separator-notes": directives.unchanged,
         "data-charset": directives.unchanged,
-
         "data-x": directives.unchanged,
         "data-y": directives.unchanged,
         "data-z": directives.unchanged,
@@ -110,9 +108,9 @@ class SpeakerNotesDirective(Directive):
 def visit_container(self, node):
     """Modify HTML markup generator for container directives."""
     classes = node.attributes["classes"]
-    if 'substep' in classes:
-        classes.append('fragment')
-    self.body.append(self.starttag(node, 'div', CLASS='docutils'))
+    if "substep" in classes:
+        classes.append("fragment")
+    self.body.append(self.starttag(node, "div", CLASS="docutils"))
 
 
 HTMLTranslator.visit_container = visit_container
@@ -130,6 +128,9 @@ def visit_slide(self, node):
         if node.get(attr) is not None:
             section_attrs.update({attr: node.get(attr)})
 
+    if ("data-x" not in section_attrs) and ("data-rel-x" not in section_attrs):
+        section_attrs["data-rel-x"] = "1300"
+
     title = node.get("title") if (not node.get("noheading")) else None
     title_heading = node.get("title-heading", "h2")
 
@@ -143,9 +144,11 @@ def visit_slide(self, node):
     title_text = (template % {"mark": title_mark, "text": title}) if title else None
     subtitle_text = (template % {"mark": subtitle_mark, "text": subtitle}) if subtitle else None
 
-    section_attrs["class"] = "step slide"
-    section_attrs["data-rel-x"] = "1300"
-    section_attrs["data-rel-y"] = "0"
+    classes = node.attributes["classes"]
+    if "slide" not in classes:
+        classes.append("slide")
+    if "step" not in classes:
+        classes.append("step")
 
     self.body.append(self.starttag(node, "section", **section_attrs))
 
