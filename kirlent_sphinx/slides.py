@@ -7,6 +7,7 @@
 from docutils import nodes
 from docutils.parsers.rst import Directive, directives
 from docutils.parsers.rst.roles import set_classes
+from docutils.writers._html_base import HTMLTranslator
 
 
 class Slide(nodes.General, nodes.Element):
@@ -104,6 +105,17 @@ class SpeakerNotesDirective(Directive):
         self.state.nested_parse(self.content, self.content_offset, node)
 
         return [node]
+
+
+def visit_container(self, node):
+    """Modify HTML markup generator for container directives."""
+    classes = node.attributes["classes"]
+    if 'substep' in classes:
+        classes.append('fragment')
+    self.body.append(self.starttag(node, 'div', CLASS='docutils'))
+
+
+HTMLTranslator.visit_container = visit_container
 
 
 def visit_slide(self, node):
