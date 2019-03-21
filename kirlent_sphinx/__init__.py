@@ -21,4 +21,5 @@ def setup(app):
     tables.setup(app)
     slides.setup(app)
     app.add_html_theme("kirlent_revealjs", str(Path(_template_path, "kirlent_revealjs")))
+    app.add_html_theme("kirlent_impressjs", str(Path(_template_path, "kirlent_impressjs")))
     return {"version": __version__}
