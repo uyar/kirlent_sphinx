@@ -93,7 +93,7 @@ section ul ul ul {
 
 section em {
   font-style: normal;
-  color: #e3342f;
+  color: #E3342F;
   text-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
 }
 
@@ -102,7 +102,7 @@ section strong {
 }
 
 section code {
-  background-color: #dae1e7;
+  background-color: #DAE1E7;
   font-size: 1em;
 }
 
@@ -122,11 +122,11 @@ section video {
 
 section a {
   text-decoration: none;
-  color: #2779bd;
+  color: #2779BD;
 }
 
 section a:hover {
-  color: #6cb2eb;
+  color: #6CB2EB;
 }
 
 /*********************************************
@@ -247,7 +247,7 @@ section a:hover {
 }
 
 .striped tr.row-even {
-  background-color: #dae1e7;
+  background-color: #DAE1E7;
 }
 
 /*********************************************
