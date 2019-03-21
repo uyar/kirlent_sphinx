@@ -55,7 +55,6 @@ class SlideDirective(Directive):
         "data-rotate-x": directives.unchanged,
         "data-rotate-y": directives.unchanged,
         "data-rotate-z": directives.unchanged,
-        "data-perspective": directives.unchanged,
         "data-scale": directives.unchanged,
         "data-autoplay": directives.unchanged,
         "data-transition-duration": directives.unchanged,
