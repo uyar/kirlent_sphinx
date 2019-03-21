@@ -109,10 +109,6 @@ section a:hover {
  *********************************************/
 
 @media print {
-  .backgrounds {
-    background-color: #ffffff;
-  }
-
   .reveal .slides {
     transform: translate(-50%, -50%) scale(1.0) !important;
   }
