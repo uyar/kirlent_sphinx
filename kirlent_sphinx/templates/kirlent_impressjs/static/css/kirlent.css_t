@@ -27,6 +27,7 @@ section aside.notes {
 
 section {
   padding-bottom: 2em;
+  box-sizing: border-box;
 }
 
 section > *:not(h2) {

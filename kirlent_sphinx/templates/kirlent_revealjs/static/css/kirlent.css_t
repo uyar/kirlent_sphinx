@@ -13,6 +13,7 @@ body {
 
 section {
   padding-bottom: 2em;
+  box-sizing: border-box;
 }
 
 section > *:not(h2) {
