@@ -25,18 +25,18 @@ section aside.notes {
  * CONTENT SECTIONING
  *********************************************/
 
+section {
+  padding-bottom: 2em;
+}
+
 section > *:not(h2) {
-  margin-left: 1em;
-  margin-right: 1em;
+  margin-left: 2em;
+  margin-right: 2em;
 }
 
 section > h2 {
-  margin: 0 0 1em 0;
+  margin: 0 0 2em 0;
   padding: 0.5em 1em;
-}
-
-section > *:last-child {
-  margin-bottom: 1em;
 }
 
 section h1,
