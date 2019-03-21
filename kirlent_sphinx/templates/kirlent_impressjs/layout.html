@@ -26,7 +26,7 @@
 
     {%- for scriptfile in script_files %}
     {%- if scriptfile not in ('_static/underscore.js', '_static/doctools.js') %}
-    <script type="text/javascript" src="{{ pathto(scriptfile, 1) }}"></script>
+    <script src="{{ pathto(scriptfile, 1) }}"></script>
     {%- endif %}
     {%- endfor %}
   </head>
