@@ -51,6 +51,7 @@ class SlideDirective(Directive):
         "data-rel-x": directives.unchanged,
         "data-rel-y": directives.unchanged,
         "data-rel-z": directives.unchanged,
+        "data-rel-to": directives.unchanged,
         "data-rotate": directives.unchanged,
         "data-rotate-x": directives.unchanged,
         "data-rotate-y": directives.unchanged,
@@ -108,10 +109,11 @@ class SpeakerNotesDirective(Directive):
 def visit_container(self, node):
     """Modify HTML markup generator for container directives."""
     classes = node.attributes["classes"]
-    if "substep" in classes:
+    if ("substep" in classes) and ("fragment" not in classes):
         classes.append("fragment")
-    if "fragment" in classes:
+    if ("fragment" in classes) and ("substep" not in classes):
         classes.append("substep")
+    # note that the tag doesn't have a "container" class by default
     self.body.append(self.starttag(node, "div", CLASS="docutils"))
 
 
