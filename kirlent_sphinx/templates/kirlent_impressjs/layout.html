@@ -31,7 +31,13 @@
     {%- endfor %}
   </head>
   <body>
-    <div id="impress">
+    <div id="impress"
+         data-width="{{ theme_width }}"
+         data-height="{{ theme_height }}"
+         data-min-scale="{{ theme_min_scale }}"
+         data-max-scale="{{ theme_max_scale }}"
+         data-perspective="{{ theme_perspective }}"
+         data-transition-duration="{{ theme_transition_duration }}">
       {% block body %}{% endblock %}
     </div>
 
