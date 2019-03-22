@@ -4,7 +4,7 @@
 
 body {
   font-size: 36px;
-  line-height: 1.5;
+  line-height: 1.8;
 }
 
 /*********************************************
@@ -12,8 +12,12 @@ body {
  *********************************************/
 
 section {
-  padding-bottom: 2em;
   box-sizing: border-box;
+  padding-bottom: 1em;
+}
+
+section .first {
+  margin-top: 1em;
 }
 
 section > *:not(h2) {
@@ -22,7 +26,6 @@ section > *:not(h2) {
 }
 
 section > h2 {
-  margin: 0 0 2em 0;
   padding: 0.5em 1em;
 }
 
