@@ -5,8 +5,8 @@
 
 section.step {
   position: relative;
-  width: 990px;
-  height: 700px;
+  width: {{ theme_width }}px;
+  height: {{ theme_height }}px;
 }
 
 section aside.notes {
