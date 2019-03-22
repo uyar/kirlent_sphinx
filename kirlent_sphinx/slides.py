@@ -139,11 +139,10 @@ def visit_slide(self, node):
     subtitle_heading = node.get("subtitle-heading", "h3")
 
     template = "<%(mark)s>%(text)s</%(mark)s>\n"
-    title_mark = title_heading
-    subtitle_mark = subtitle_heading
-
-    title_text = (template % {"mark": title_mark, "text": title}) if title else None
-    subtitle_text = (template % {"mark": subtitle_mark, "text": subtitle}) if subtitle else None
+    title_text = (template % {"mark": title_heading, "text": title}) if title else None
+    subtitle_text = (
+        (template % {"mark": subtitle_heading, "text": subtitle}) if subtitle else None
+    )
 
     classes = node.attributes["classes"]
     if "slide" not in classes:
