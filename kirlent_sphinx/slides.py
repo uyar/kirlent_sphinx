@@ -128,9 +128,6 @@ def visit_slide(self, node):
         if node.get(attr) is not None:
             section_attrs.update({attr: node.get(attr)})
 
-    if ("data-x" not in section_attrs) and ("data-rel-x" not in section_attrs):
-        section_attrs["data-rel-x"] = "1300"
-
     title = node.get("title") if (not node.get("noheading")) else None
     title_heading = node.get("title-heading", "h2")
 
