@@ -110,6 +110,8 @@ def visit_container(self, node):
     classes = node.attributes["classes"]
     if "substep" in classes:
         classes.append("fragment")
+    if "fragment" in classes:
+        classes.append("substep")
     self.body.append(self.starttag(node, "div", CLASS="docutils"))
 
 
