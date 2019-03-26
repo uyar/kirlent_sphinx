@@ -164,13 +164,13 @@ def depart_slide(self, node):
     self.body.append("</section>\n")
 
 
-def visit_speaker_note(self, node):
+def visit_speaker_notes(self, node):
     """Build start tag for a speaker notes node."""
     self.body.append(self.starttag(node, "aside", **{"class": "notes"}))
     self.set_first_last(node)
 
 
-def depart_speaker_note(self, node):
+def depart_speaker_notes(self, node):
     """Build end tag for a speaker notes node."""
     self.body.append("</aside>\n")
 
@@ -178,6 +178,6 @@ def depart_speaker_note(self, node):
 def setup(app):
     """Add the directives to a Sphinx application."""
     app.add_node(Slide, html=(visit_slide, depart_slide))
-    app.add_node(SpeakerNotes, html=(visit_speaker_note, depart_speaker_note))
+    app.add_node(SpeakerNotes, html=(visit_speaker_notes, depart_speaker_notes))
     app.add_directive("slide", SlideDirective)
     app.add_directive("speaker-notes", SpeakerNotesDirective)
