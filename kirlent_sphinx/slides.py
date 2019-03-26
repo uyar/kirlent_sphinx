@@ -59,6 +59,7 @@ class SlideDirective(Directive):
         "data-scale": directives.unchanged,
         "data-autoplay": directives.unchanged,
         "data-transition-duration": directives.unchanged,
+        "data-overlays": directives.unchanged,
     }
 
     def run(self):
@@ -107,17 +108,33 @@ class SpeakerNotesDirective(Directive):
 
 
 class KirlentTranslator(HTML5Translator):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.deltas = [0, 0, 0]
+        self.next_deltas = [None, None, None]
+        self.overlays = []
+
     def visit_container(self, node):
         """Build start tag for a container node.
 
         Note that this leaves out the container class normally added by docutils.
         """
         classes = node.attributes["classes"]
+
         if ("substep" in classes) and ("fragment" not in classes):
             classes.append("fragment")
         if ("fragment" in classes) and ("substep" not in classes):
             classes.append("substep")
+
         self.body.append(self.starttag(node, "div", CLASS="docutils"))
+
+
+OVERLAY_TEMPLATE = """
+<section class="slide step bg-transparent shadow-none"
+         data-rel-x="%s" data-rel-y="%s" data-rel-z="%s" data-scale="%s">
+</section>
+
+"""
 
 
 def visit_slide(self, node):
@@ -131,6 +148,22 @@ def visit_slide(self, node):
     for attr in data_attrs:
         if node.get(attr) is not None:
             section_attrs.update({attr: node.get(attr)})
+
+    data_rel_x = node.get("data-rel-x")
+    if data_rel_x is not None:
+        self.deltas[0] = int(data_rel_x)
+    else:
+        if self.next_deltas[0] is not None:
+            section_attrs["data-rel-x"] = self.next_deltas[0]
+    self.next_deltas[0] = None
+
+    data_rel_y = node.get("data-rel-y")
+    if data_rel_y is not None:
+        self.deltas[1] = int(data_rel_y)
+    else:
+        if self.next_deltas[1] is not None:
+            section_attrs["data-rel-y"] = self.next_deltas[1]
+    self.next_deltas[1] = None
 
     title = node.get("title") if (not node.get("noheading")) else None
     title_tag = node.get("title-heading", "h2")
@@ -148,6 +181,19 @@ def visit_slide(self, node):
     if "step" not in classes:
         classes.append("step")
 
+    self.next_deltas = self.deltas[:]
+    overlays = section_attrs.pop("data-overlays", None)
+    if overlays:
+        for overlay_data in overlays[1:-1].split(") ("):
+            parts = overlay_data.split(",")
+            dx, dy, dz = [int(p.strip()) for p in parts[:3]]
+            scale = parts[3].strip()
+            overlay = OVERLAY_TEMPLATE % (dx, dy, dz, scale)
+            self.overlays.append(overlay)
+            self.next_deltas[0] -= dx
+            self.next_deltas[1] -= dy
+            self.next_deltas[2] -= dz
+
     self.body.append(self.starttag(node, "section", **section_attrs))
 
     if title_text:
@@ -159,6 +205,10 @@ def visit_slide(self, node):
 def depart_slide(self, node):
     """Build end tag for a slide node."""
     self.body.append("</section>\n")
+
+    while self.overlays:
+        overlay = self.overlays.pop(0)
+        self.body.append(overlay)
 
 
 def visit_speaker_notes(self, node):
