@@ -17,10 +17,6 @@ section {
   padding-bottom: 1em;
 }
 
-section .first {
-  margin-top: 1em;
-}
-
 section > *:not(h2) {
   margin-left: 2em;
   margin-right: 2em;
@@ -28,6 +24,7 @@ section > *:not(h2) {
 
 section > h2 {
   padding: 0.5em 1em;
+  margin-bottom: 1em;
 }
 
 section h1,

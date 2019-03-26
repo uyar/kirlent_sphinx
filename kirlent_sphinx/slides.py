@@ -7,7 +7,7 @@
 from docutils import nodes
 from docutils.parsers.rst import Directive, directives
 from docutils.parsers.rst.roles import set_classes
-from docutils.writers._html_base import HTMLTranslator
+from sphinx.writers.html5 import HTML5Translator
 
 
 class Slide(nodes.General, nodes.Element):
@@ -106,18 +106,18 @@ class SpeakerNotesDirective(Directive):
         return [node]
 
 
-def visit_container(self, node):
-    """Modify HTML markup generator for container directives."""
-    classes = node.attributes["classes"]
-    if ("substep" in classes) and ("fragment" not in classes):
-        classes.append("fragment")
-    if ("fragment" in classes) and ("substep" not in classes):
-        classes.append("substep")
-    # note that the tag doesn't have a "container" class by default
-    self.body.append(self.starttag(node, "div", CLASS="docutils"))
+class KirlentTranslator(HTML5Translator):
+    def visit_container(self, node):
+        """Build start tag for a container node.
 
-
-HTMLTranslator.visit_container = visit_container
+        Note that this removes the container class normally added by docutils.
+        """
+        classes = node.attributes["classes"]
+        if ("substep" in classes) and ("fragment" not in classes):
+            classes.append("fragment")
+        if ("fragment" in classes) and ("substep" not in classes):
+            classes.append("substep")
+        self.body.append(self.starttag(node, "div", CLASS="docutils"))
 
 
 def visit_slide(self, node):
@@ -156,7 +156,6 @@ def visit_slide(self, node):
         self.body.append(title_text)
     if subtitle_text:
         self.body.append(subtitle_text)
-    self.set_first_last(node)
 
 
 def depart_slide(self, node):
@@ -167,7 +166,6 @@ def depart_slide(self, node):
 def visit_speaker_notes(self, node):
     """Build start tag for a speaker notes node."""
     self.body.append(self.starttag(node, "aside", **{"class": "notes"}))
-    self.set_first_last(node)
 
 
 def depart_speaker_notes(self, node):
@@ -177,6 +175,7 @@ def depart_speaker_notes(self, node):
 
 def setup(app):
     """Add the directives to a Sphinx application."""
+    app.set_translator("html", KirlentTranslator)
     app.add_node(Slide, html=(visit_slide, depart_slide))
     app.add_node(SpeakerNotes, html=(visit_speaker_notes, depart_speaker_notes))
     app.add_directive("slide", SlideDirective)
