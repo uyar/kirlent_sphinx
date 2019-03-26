@@ -110,7 +110,7 @@ class KirlentTranslator(HTML5Translator):
     def visit_container(self, node):
         """Build start tag for a container node.
 
-        Note that this removes the container class normally added by docutils.
+        Note that this leaves out the container class normally added by docutils.
         """
         classes = node.attributes["classes"]
         if ("substep" in classes) and ("fragment" not in classes):
@@ -133,16 +133,14 @@ def visit_slide(self, node):
             section_attrs.update({attr: node.get(attr)})
 
     title = node.get("title") if (not node.get("noheading")) else None
-    title_heading = node.get("title-heading", "h2")
+    title_tag = node.get("title-heading", "h2")
 
     subtitle = node.get("subtitle")
-    subtitle_heading = node.get("subtitle-heading", "h3")
+    subtitle_tag = node.get("subtitle-heading", "h3")
 
-    template = "<%(mark)s>%(text)s</%(mark)s>\n"
-    title_text = (template % {"mark": title_heading, "text": title}) if title else None
-    subtitle_text = (
-        (template % {"mark": subtitle_heading, "text": subtitle}) if subtitle else None
-    )
+    template = "<%(tag)s>%(text)s</%(tag)s>\n"
+    title_text = (template % {"tag": title_tag, "text": title}) if title else None
+    subtitle_text = (template % {"tag": subtitle_tag, "text": subtitle}) if subtitle else None
 
     classes = node.attributes["classes"]
     if "slide" not in classes:
