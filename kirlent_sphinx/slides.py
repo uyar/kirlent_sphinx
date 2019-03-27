@@ -108,6 +108,8 @@ class SpeakerNotesDirective(Directive):
 
 
 class KirlentTranslator(HTML5Translator):
+    """Base translator to generate Kirlent markup."""
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.dx, self.dy, self.dz = 0, 0, 0
