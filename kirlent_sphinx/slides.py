@@ -110,8 +110,8 @@ class SpeakerNotesDirective(Directive):
 class KirlentTranslator(HTML5Translator):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.deltas = [0, 0, 0]
-        self.next_deltas = [None, None, None]
+        self.dx, self.dy, self.dz = 0, 0, 0
+        self.next_dx, self.next_dy, self.next_dz = None, None, None
         self.views = []
 
     def visit_container(self, node):
@@ -151,19 +151,19 @@ def visit_slide(self, node):
 
     data_rel_x = node.get("data-rel-x")
     if data_rel_x is not None:
-        self.deltas[0] = int(data_rel_x)
+        self.dx = int(data_rel_x)
     else:
-        if self.next_deltas[0] is not None:
-            section_attrs["data-rel-x"] = self.next_deltas[0]
-    self.next_deltas[0] = None
+        if self.next_dx is not None:
+            section_attrs["data-rel-x"] = self.next_dx
+    self.next_dx = None
 
     data_rel_y = node.get("data-rel-y")
     if data_rel_y is not None:
-        self.deltas[1] = int(data_rel_y)
+        self.dy = int(data_rel_y)
     else:
-        if self.next_deltas[1] is not None:
-            section_attrs["data-rel-y"] = self.next_deltas[1]
-    self.next_deltas[1] = None
+        if self.next_dy is not None:
+            section_attrs["data-rel-y"] = self.next_dy
+    self.next_dy = None
 
     title = node.get("title") if (not node.get("noheading")) else None
     title_tag = node.get("title-heading", "h2")
@@ -181,16 +181,16 @@ def visit_slide(self, node):
     if "step" not in classes:
         classes.append("step")
 
-    self.next_deltas = self.deltas[:]
+    self.next_dx, self.next_dy, self.next_dz = self.dx, self.dy, self.dz
     views = section_attrs.pop("data-views", None)
     if views is not None:
         for view_data in views[1:-1].split(") ("):
             dx, dy, dz, scale = map(str.strip, view_data.split(","))
             view = VIEW_TEMPLATE % (dx, dy, dz, scale)
             self.views.append(view)
-            self.next_deltas[0] -= int(dx)
-            self.next_deltas[1] -= int(dy)
-            self.next_deltas[2] -= int(dz)
+            self.next_dx -= int(dx)
+            self.next_dy -= int(dy)
+            self.next_dz -= int(dz)
 
     self.body.append(self.starttag(node, "section", **section_attrs))
 
