@@ -59,7 +59,7 @@ class SlideDirective(Directive):
         "data-scale": directives.unchanged,
         "data-autoplay": directives.unchanged,
         "data-transition-duration": directives.unchanged,
-        "data-overlays": directives.unchanged,
+        "data-views": directives.unchanged,
     }
 
     def run(self):
@@ -112,7 +112,7 @@ class KirlentTranslator(HTML5Translator):
         super().__init__(*args, **kwargs)
         self.deltas = [0, 0, 0]
         self.next_deltas = [None, None, None]
-        self.overlays = []
+        self.views = []
 
     def visit_container(self, node):
         """Build start tag for a container node.
@@ -129,7 +129,7 @@ class KirlentTranslator(HTML5Translator):
         self.body.append(self.starttag(node, "div", CLASS="docutils"))
 
 
-OVERLAY_TEMPLATE = """
+VIEW_TEMPLATE = """
 <section class="slide step bg-transparent shadow-none"
          data-rel-x="%s" data-rel-y="%s" data-rel-z="%s" data-scale="%s">
 </section>
@@ -182,17 +182,15 @@ def visit_slide(self, node):
         classes.append("step")
 
     self.next_deltas = self.deltas[:]
-    overlays = section_attrs.pop("data-overlays", None)
-    if overlays:
-        for overlay_data in overlays[1:-1].split(") ("):
-            parts = overlay_data.split(",")
-            dx, dy, dz = [int(p.strip()) for p in parts[:3]]
-            scale = parts[3].strip()
-            overlay = OVERLAY_TEMPLATE % (dx, dy, dz, scale)
-            self.overlays.append(overlay)
-            self.next_deltas[0] -= dx
-            self.next_deltas[1] -= dy
-            self.next_deltas[2] -= dz
+    views = section_attrs.pop("data-views", None)
+    if views is not None:
+        for view_data in views[1:-1].split(") ("):
+            dx, dy, dz, scale = map(str.strip, view_data.split(","))
+            view = VIEW_TEMPLATE % (dx, dy, dz, scale)
+            self.views.append(view)
+            self.next_deltas[0] -= int(dx)
+            self.next_deltas[1] -= int(dy)
+            self.next_deltas[2] -= int(dz)
 
     self.body.append(self.starttag(node, "section", **section_attrs))
 
@@ -206,9 +204,9 @@ def depart_slide(self, node):
     """Build end tag for a slide node."""
     self.body.append("</section>\n")
 
-    while self.overlays:
-        overlay = self.overlays.pop(0)
-        self.body.append(overlay)
+    while self.views:
+        view = self.views.pop(0)
+        self.body.append(view)
 
 
 def visit_speaker_notes(self, node):
