@@ -163,6 +163,12 @@ def visit_slide(self, node):
     else:
         section_attrs["data-rel-y"] = self.next_dy
 
+    data_rel_z = node.get("data-rel-z")
+    if data_rel_z is not None:
+        self.dz = int(data_rel_z)
+    else:
+        section_attrs["data-rel-z"] = self.next_dz
+
     self.next_dx, self.next_dy, self.next_dz = self.dx, self.dy, self.dz
 
     title = node.get("title") if (not node.get("noheading")) else None
