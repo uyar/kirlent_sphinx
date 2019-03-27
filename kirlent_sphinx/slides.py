@@ -113,7 +113,7 @@ class KirlentTranslator(HTML5Translator):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.dx, self.dy, self.dz = 0, 0, 0
-        self.next_dx, self.next_dy, self.next_dz = None, None, None
+        self.next_dx, self.next_dy, self.next_dz = 0, 0, 0
         self.views = []
 
     def visit_container(self, node):
@@ -154,16 +154,16 @@ def visit_slide(self, node):
     data_rel_x = node.get("data-rel-x")
     if data_rel_x is not None:
         self.dx = int(data_rel_x)
-    elif self.next_dx is not None:
+    else:
         section_attrs["data-rel-x"] = self.next_dx
-    self.next_dx = None
 
     data_rel_y = node.get("data-rel-y")
     if data_rel_y is not None:
         self.dy = int(data_rel_y)
-    elif self.next_dy is not None:
+    else:
         section_attrs["data-rel-y"] = self.next_dy
-    self.next_dy = None
+
+    self.next_dx, self.next_dy, self.next_dz = self.dx, self.dy, self.dz
 
     title = node.get("title") if (not node.get("noheading")) else None
     title_tag = node.get("title-heading", "h2")
@@ -181,7 +181,6 @@ def visit_slide(self, node):
     if "step" not in classes:
         classes.append("step")
 
-    self.next_dx, self.next_dy, self.next_dz = self.dx, self.dy, self.dz
     views = section_attrs.pop("data-views", None)
     if views is not None:
         for view_data in views[1:-1].split(") ("):
