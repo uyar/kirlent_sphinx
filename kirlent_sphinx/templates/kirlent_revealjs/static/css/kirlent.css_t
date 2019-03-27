@@ -46,6 +46,10 @@ section dl {
   margin-bottom: 0.7em;
 }
 
+section ul p {
+  margin-bottom: unset;
+}
+
 section pre {
   font-size: 0.7em;
   line-height: 1.2;
