@@ -10,8 +10,8 @@ kirlent_sphinx provides the following components:
 - An extended ``table`` directive derived from the `Cloud Sphinx Theme`_
   project.
 
-- A ``slide`` directive and a corresponding HTML theme based on `RevealJS`_,
-  derived from the `sphinxjp.themes.revealjs`_ project.
+- A ``slide`` directive and corresponding HTML themes using `RevealJS`_
+  or `ImpressJS`_.
 
 Getting started
 ---------------
@@ -26,9 +26,10 @@ To enable it in your project, make the following changes in ``conf.py``:
 
     extensions = ["kirlent_sphinx"]
 
-- Set ``kirlent`` as the theme::
+- Set the theme to use revealjs or impressjs using one of the below lines::
 
-    html_theme = "kirlent"
+    html_theme = "kirlent_revealjs"
+    html_theme = "kirlent_impressjs"
 
 - Disable index generation::
 
@@ -40,14 +41,11 @@ Usage
 For the extended ``table`` directive, consult the documentation
 of the `table_styling`_ extension of the `Cloud Sphinx Theme`_ project.
 
-The ``slide`` and ``speaker-notes`` directives are derived from the
-``revealjs`` and ``rv_note`` directives of the `sphinxjp.themes.revealjs`_
-project. The ``rv_small`` and ``rv_code`` directives of that project have been
-removed.
+The ``slide`` directives can support most of the ``data-`` attributes
+as described in the documentations of the `RevealJS`_ and `ImpressJS`_
+projects.
 
-The Kırlent HTML theme uses pygments for code highlighting instead of
-highlight.js which is used by the original theme. In addition, it uses
-`Tailwind`_ utility classes for styling::
+The themes include `Tailwind`_ utility classes for styling::
 
   .. slide:: Slide title
 
@@ -86,6 +84,10 @@ kirlent_sphinx contains code from the `RevealJS`_ project which is
 released under the MIT license. Read the included ``LICENSE_revealjs.txt``
 file for details.
 
+kirlent_sphinx contains code from the `ImpressJS`_ project which is
+released under the MIT license. Read the included ``LICENSE_impressjs.txt``
+file for details.
+
 kirlent_sphinx contains code from the `Tailwind`_ project which is
 released under the MIT license. Read the included ``LICENSE_tailwind.txt``
 file for details.
@@ -95,4 +97,5 @@ file for details.
 .. _table_styling: https://cloud-sptheme.readthedocs.io/en/latest/lib/cloud_sptheme.ext.table_styling.html
 .. _sphinxjp.themes.revealjs: https://github.com/tell-k/sphinxjp.themes.revealjs
 .. _RevealJS: https://revealjs.com/
+.. _ImpressJS: https://impress.js.org/
 .. _Tailwind: https://tailwindcss.com/
