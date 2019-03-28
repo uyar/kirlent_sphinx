@@ -26,13 +26,16 @@ class SlideDirective(Directive):
     optional_arguments = 100
     final_argument_whitespace = False
 
-    option_spec = {
+    option_spec_base = {
         "id": directives.unchanged,
         "class": directives.class_option,
         "noheading": directives.flag,
         "title-heading": lambda t: directives.choice(t, ("h1", "h2", "h3", "h4", "h5", "h6")),
         "subtitle": directives.unchanged_required,
         "subtitle-heading": directives.unchanged,
+    }
+
+    option_spec_revealjs = {
         "data-autoslide": directives.unchanged,
         "data-transition": directives.unchanged,
         "data-transition-speed": directives.unchanged,
@@ -45,6 +48,9 @@ class SlideDirective(Directive):
         "data-separator-vertical": directives.unchanged,
         "data-separator-notes": directives.unchanged,
         "data-charset": directives.unchanged,
+    }
+
+    option_spec_impressjs = {
         "data-x": directives.unchanged,
         "data-y": directives.unchanged,
         "data-z": directives.unchanged,
@@ -61,6 +67,8 @@ class SlideDirective(Directive):
         "data-transition-duration": directives.unchanged,
         "data-views": directives.unchanged,
     }
+
+    option_spec = {**option_spec_base, **option_spec_revealjs, **option_spec_impressjs}
 
     def run(self):
         """Build a slide node from this directive."""
@@ -154,8 +162,12 @@ def visit_slide(self, node):
 
     data_attrs = [a for a in SlideDirective.option_spec if a.startswith("data-")]
     for attr in data_attrs:
-        if node.get(attr) is not None:
-            section_attrs.update({attr: node.get(attr)})
+        attr_value = node.get(attr)
+        if attr_value is not None:
+            if (self.revealjs and (attr in SlideDirective.option_spec_revealjs)) or (
+                self.impressjs and (attr in SlideDirective.option_spec_impressjs)
+            ):
+                section_attrs.update({attr: attr_value})
 
     if self.impressjs:
         data_rel_x = node.get("data-rel-x")
