@@ -112,9 +112,15 @@ class KirlentTranslator(HTML5Translator):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.dx, self.dy, self.dz = 0, 0, 0
-        self.next_dx, self.next_dy, self.next_dz = 0, 0, 0
-        self.views = []
+
+        theme = self.builder.env.config.html_theme
+        self.revealjs = theme == "kirlent_revealjs"
+        self.impressjs = theme == "kirlent_impressjs"
+
+        if self.impressjs:
+            self.dx, self.dy, self.dz = 0, 0, 0
+            self.next_dx, self.next_dy, self.next_dz = 0, 0, 0
+            self.views = []
 
     def visit_container(self, node):
         """Build start tag for a container node.
@@ -123,9 +129,9 @@ class KirlentTranslator(HTML5Translator):
         """
         classes = node.attributes["classes"]
 
-        if ("substep" in classes) and ("fragment" not in classes):
+        if self.revealjs and ("substep" in classes) and ("fragment" not in classes):
             classes.append("fragment")
-        if ("fragment" in classes) and ("substep" not in classes):
+        if self.impressjs and ("fragment" in classes) and ("substep" not in classes):
             classes.append("substep")
 
         self.body.append(self.starttag(node, "div", CLASS="docutils"))
@@ -151,25 +157,26 @@ def visit_slide(self, node):
         if node.get(attr) is not None:
             section_attrs.update({attr: node.get(attr)})
 
-    data_rel_x = node.get("data-rel-x")
-    if data_rel_x is not None:
-        self.dx = int(data_rel_x)
-    else:
-        section_attrs["data-rel-x"] = self.next_dx
+    if self.impressjs:
+        data_rel_x = node.get("data-rel-x")
+        if data_rel_x is not None:
+            self.dx = int(data_rel_x)
+        else:
+            section_attrs["data-rel-x"] = self.next_dx
 
-    data_rel_y = node.get("data-rel-y")
-    if data_rel_y is not None:
-        self.dy = int(data_rel_y)
-    else:
-        section_attrs["data-rel-y"] = self.next_dy
+        data_rel_y = node.get("data-rel-y")
+        if data_rel_y is not None:
+            self.dy = int(data_rel_y)
+        else:
+            section_attrs["data-rel-y"] = self.next_dy
 
-    data_rel_z = node.get("data-rel-z")
-    if data_rel_z is not None:
-        self.dz = int(data_rel_z)
-    else:
-        section_attrs["data-rel-z"] = self.next_dz
+        data_rel_z = node.get("data-rel-z")
+        if data_rel_z is not None:
+            self.dz = int(data_rel_z)
+        else:
+            section_attrs["data-rel-z"] = self.next_dz
 
-    self.next_dx, self.next_dy, self.next_dz = self.dx, self.dy, self.dz
+        self.next_dx, self.next_dy, self.next_dz = self.dx, self.dy, self.dz
 
     title = node.get("title") if (not node.get("noheading")) else None
     title_tag = node.get("title-heading", "h2")
@@ -182,20 +189,22 @@ def visit_slide(self, node):
     subtitle_text = (template % {"tag": subtitle_tag, "text": subtitle}) if subtitle else None
 
     classes = node.attributes["classes"]
-    if "slide" not in classes:
-        classes.append("slide")
-    if "step" not in classes:
-        classes.append("step")
 
-    views = section_attrs.pop("data-views", None)
-    if views is not None:
-        for view_data in views[1:-1].split(") ("):
-            dx, dy, dz, scale = map(str.strip, view_data.split(","))
-            view = VIEW_TEMPLATE % (dx, dy, dz, scale)
-            self.views.append(view)
-            self.next_dx -= int(dx)
-            self.next_dy -= int(dy)
-            self.next_dz -= int(dz)
+    if self.impressjs:
+        if "slide" not in classes:
+            classes.append("slide")
+        if "step" not in classes:
+            classes.append("step")
+
+        views = section_attrs.pop("data-views", None)
+        if views is not None:
+            for view_data in views[1:-1].split(") ("):
+                dx, dy, dz, scale = map(str.strip, view_data.split(","))
+                view = VIEW_TEMPLATE % (dx, dy, dz, scale)
+                self.views.append(view)
+                self.next_dx -= int(dx)
+                self.next_dy -= int(dy)
+                self.next_dz -= int(dz)
 
     self.body.append(self.starttag(node, "section", **section_attrs))
 
@@ -209,9 +218,10 @@ def depart_slide(self, node):
     """Build end tag for a slide node."""
     self.body.append("</section>\n")
 
-    while self.views:
-        view = self.views.pop(0)
-        self.body.append(view)
+    if self.impressjs:
+        while self.views:
+            view = self.views.pop(0)
+            self.body.append(view)
 
 
 def visit_speaker_notes(self, node):
