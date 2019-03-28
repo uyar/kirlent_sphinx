@@ -25,6 +25,11 @@ section aside.notes {
   transition: opacity 1s;
 }
 
+#impress .view {
+  background: transparent;
+  box-shadow: none;
+}
+
 /*********************************************
  * CONTENT SECTIONING
  *********************************************/

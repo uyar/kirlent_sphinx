@@ -145,12 +145,13 @@ class KirlentTranslator(HTML5Translator):
         self.body.append(self.starttag(node, "div", CLASS="docutils"))
 
 
-VIEW_TEMPLATE = """
-<section class="slide step bg-transparent shadow-none"
-         data-rel-x="%s" data-rel-y="%s" data-rel-z="%s" data-scale="%s">
-</section>
-
-"""
+VIEW_TEMPLATE = "".join(
+    [
+        '<section class="slide step view"',
+        ' data-rel-x="%s" data-rel-y="%s" data-rel-z="%s" data-scale="%s">\n',
+        "</section>\n",
+    ]
+)
 
 
 def visit_slide(self, node):

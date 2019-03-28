@@ -16,3 +16,8 @@ section aside.notes {
 .impress-enabled .step {
   transition: opacity 1s;
 }
+
+#impress .view {
+  background: transparent;
+  box-shadow: none;
+}
