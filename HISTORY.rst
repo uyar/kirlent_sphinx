@@ -1,7 +1,7 @@
 History
 =======
 
-0.3.0 (unreleased)
+0.3.0 (2019-03-28)
 ------------------
 
 - Add impress.js template.
